@@ -5,6 +5,7 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  RefreshControl,
 } from "react-native";
 import styled from "styled-components/native";
 import ArcadeCard from "@components/ArcadeCard";
@@ -13,9 +14,8 @@ import { PrismHomeProps } from "@interfaces/arcade";
 import TabNavigator from "@/components/ui/TabNavigator";
 import { useUserDatabase } from "@/contexts/userContext";
 import { usePrivy, useEmbeddedWallet } from "@privy-io/expo";
-import { ImageSourcePropType } from "react-native";
-import axios from "axios";
-const getImageSource = (uri: string): ImageSourcePropType => ({ uri });
+import { useGames } from "@/contexts/gamesContext";
+import Loading from "@/components/ui/Loading";
 
 function Avatar({ navigation }: any) {
   const { userDatabase } = useUserDatabase();
@@ -73,31 +73,12 @@ const HeaderProps = ({ navigation }) => {
 export default function PrismArcade({
   navigation,
 }: PrismHomeProps): React.JSX.Element {
-  const [games, setGames] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedTab, setSelectedTab] = useState("Latest");
-  const { isReady, user } = usePrivy();
   const wallet = useEmbeddedWallet();
+  const { isReady, user } = usePrivy();
   const { userDatabase } = useUserDatabase();
-
-  useEffect(() => {
-    const fetchGames = async () => {
-      axios
-        .get(`${process.env.EXPO_PUBLIC_BACKEND_ENDPOINT}/api/games`)
-        .then((response) => {
-          if (response.status === 200) {
-            // Assuming the response data structure matches the expected games structure
-            setGames(response.data.games);
-          } else {
-            console.error("Failed to fetch games:", response.status);
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching games:", error);
-        });
-    };
-    fetchGames();
-  }, []);
+  const [searchTerm, setSearchTerm] = useState("");
+  const { games, loading, refetchGames } = useGames();
+  const [selectedTab, setSelectedTab] = useState("Latest");
 
   useEffect(() => {
     if (!isReady) return;
@@ -116,6 +97,7 @@ export default function PrismArcade({
 
   return (
     <SuperParent>
+      {loading && <Loading />}
       <Header
         navigation={navigation}
         navigateTo="Home"
@@ -129,7 +111,11 @@ export default function PrismArcade({
         setSelectedTab={setSelectedTab}
         data={tabData}
       />
-      <ArcadeContentParent>
+      <ArcadeContentParent
+        refreshControl={
+          <RefreshControl refreshing={false} onRefresh={refetchGames} />
+        }
+      >
         <SearchContainer>
           <SearchInputContainer>
             <SearchInputImage source={require("@assets/icons/search.png")} />

@@ -26,11 +26,11 @@ export default function Conditional({ navigation }: any) {
   return (
     <SuperParent>
       <Parent style={{ opacity: fadeAnim }}>
-        {user && DBsatisfied ? (
-          <Landing navigation={navigation} />
-        ) : (
-          <Login navigation={navigation} setDBsatisfied={setDBsatisfied} />
-        )}
+        {/* {user && DBsatisfied ? ( */}
+        <Landing navigation={navigation} />
+        {/* ) : (
+           <Login navigation={navigation} setDBsatisfied={setDBsatisfied} />
+         )} */}
       </Parent>
     </SuperParent>
   );

@@ -5,35 +5,20 @@ import {
   ScrollView,
   TouchableOpacity,
   Alert,
+  Dimensions,
 } from "react-native";
-import React, { useEffect, useState } from "react";
-import styled from "styled-components/native";
-import { HeaderBack } from "@/components/header/Header";
-import ArcadeCard from "@/components/ArcadeCard";
-import axios from "axios";
-import { quests } from "@/dummy/quests";
+import React from "react";
 import Quests from "./sections/Quests";
+import { quests } from "@/dummy/quests";
+import styled from "styled-components/native";
+import ArcadeCard from "@/components/ArcadeCard";
+import { useGames } from "@/contexts/gamesContext";
+import { HeaderBack } from "@/components/header/Header";
 import { PurpleThemeButton } from "@/components/ui/Buttons";
+import AnimatedBackground from "@/components/animations/AnimatedBackground";
 
 export default function LootBox({ navigation }) {
-  const [games, setGames] = useState([]);
-  useEffect(() => {
-    const fetchGames = async () => {
-      axios
-        .get(`${process.env.EXPO_PUBLIC_BACKEND_ENDPOINT}/api/games`)
-        .then((response) => {
-          if (response.status === 200) {
-            setGames(response.data.games);
-          } else {
-            console.error("Failed to fetch games:", response.status);
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching games:", error);
-        });
-    };
-    fetchGames();
-  }, []);
+  const { games } = useGames();
   return (
     <SuperParent>
       <HeaderBack
@@ -64,8 +49,8 @@ export default function LootBox({ navigation }) {
         }
       />
       <ScrollView>
-        <BGVector source={require("@assets/images/vector-bg.png")} />
-        {/* <AnimatedBackground /> */}
+        {/* <BGVector source={require("@assets/images/vector-bg.png")} /> */}
+        <AnimatedBackground />
         <TitleBox>
           <Title>WELCOME</Title>
           <SubPhrase>
@@ -74,7 +59,13 @@ export default function LootBox({ navigation }) {
         </TitleBox>
         <UserStatistics>
           <LabelValue>
-            <Label>Shards</Label>
+            <Label>Common Shards</Label>
+            <Inventory>
+              5 <StatsIcon source={require("@assets/icons/epic-shard.png")} />
+            </Inventory>
+          </LabelValue>
+          <LabelValue>
+            <Label>Epic Shards</Label>
             <Inventory>
               2 <StatsIcon source={require("@assets/icons/shard.png")} />
             </Inventory>
@@ -82,7 +73,7 @@ export default function LootBox({ navigation }) {
           <LabelValue>
             <Label>Power Points</Label>
             <Inventory>
-              12 <StatsIcon source={require("@assets/icons/power.png")} />
+              512 <StatsIcon source={require("@assets/icons/power.png")} />
             </Inventory>
           </LabelValue>
           <LabelValue>
@@ -104,7 +95,12 @@ export default function LootBox({ navigation }) {
             1000 powerpoints equals 1 shard
           </SubPhraseInfo>
           <View style={{ marginBottom: 10 }} />
-          <PurpleThemeButton title="Buy Shards" icon event={() => {}} />
+          <PurpleThemeButton
+            title="Covert to Shards"
+            icon
+            event={() => Alert.alert("Under Development")}
+            styles={{ marginTop: 15 }}
+          />
         </TitleBox>
         <TitleBox>
           <Title>
@@ -114,7 +110,12 @@ export default function LootBox({ navigation }) {
           <SubPhrase>Completed quests, play games, or redeem</SubPhrase>
           <SubPhrase>powerpoints to get shards, buy now!</SubPhrase>
           <View style={{ marginBottom: 10 }} />
-          <PurpleThemeButton title="Buy Powerpoints" icon event={() => {}} />
+          <PurpleThemeButton
+            title="Buy Powerpoints"
+            icon
+            event={() => Alert.alert("Under Development")}
+            styles={{ marginTop: 15 }}
+          />
         </TitleBox>
         <TitleBox>
           <Title>
@@ -123,7 +124,7 @@ export default function LootBox({ navigation }) {
           </Title>
           <SubPhrase>Complete quests and win exciting rewards!</SubPhrase>
         </TitleBox>
-        {quests && quests.map((q) => <Quests {...q} />)}
+        {quests && quests.map((q, i) => <Quests {...q} key={i} />)}
 
         <TitleBox>
           <Title>
@@ -134,18 +135,19 @@ export default function LootBox({ navigation }) {
           <SubPhrase>and win exiting rewards!</SubPhrase>
         </TitleBox>
         {games &&
-          games.slice(0, 3).map((game, index) => (
-            // <CardAndPlay key={index}>
-            <ArcadeCard
-              key={index}
-              title={game.title}
-              tag={game.genres}
-              imgSrc={game.image}
-              game={game}
-              loot
-              navigation={navigation}
-            />
-          ))}
+          games
+            .slice(0, 3)
+            .map((game, index) => (
+              <ArcadeCard
+                key={index}
+                title={game.title}
+                tag={game.genres}
+                imgSrc={game.image}
+                game={game}
+                loot
+                navigation={navigation}
+              />
+            ))}
       </ScrollView>
     </SuperParent>
   );
@@ -153,7 +155,7 @@ export default function LootBox({ navigation }) {
 const SuperParent = styled(View)`
   background-color: #000;
   height: 100%;
-  width: 100%;
+  width: ${Dimensions.get("screen").width}px;
   overflow: hidden;
   align-items: center;
   width: 100%;
@@ -190,8 +192,8 @@ const Inventory = styled(Text)`
   margin: 10px 0px;
 `;
 const StatsIcon = styled(Image)`
-  width: 17px;
-  height: 17px;
+  width: 20px;
+  height: 20px;
   margin-left: 5px;
 `;
 const TitleBox = styled(View)`

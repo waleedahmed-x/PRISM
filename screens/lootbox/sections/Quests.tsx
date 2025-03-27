@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Dimensions } from "react-native";
 import React from "react";
 import styled from "styled-components/native";
 import { IQuest } from "@/dummy/quests";
@@ -19,11 +19,11 @@ export default function Quests({
         <QuestDetail>Progress: {progress}%</QuestDetail>
         <Divider />
         <PurpleThemeButton
-          title="Earn 15 Power Points"
+          title={`Earn ${
+            Math.floor(Math.random() * (90 - 10 + 1)) + 10
+          } Power Points`}
           event={() => {}}
-          // icon
-          //   icon={require("@assets/icons/shard.png")}
-          //    <ShardIcon source={require("@assets/icons/shard.png")} />
+          icon
         />
       </QuestCard>
     </Container>
@@ -31,19 +31,17 @@ export default function Quests({
 }
 
 const Container = styled(View)`
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  width: 90%;
+  width: ${Dimensions.get("screen").width / 1.1}px;
   align-self: center;
-  border-radius: 20px;
-  margin-top: 10px;
+  border-radius: 25px;
+  margin-top: 15px;
   background-color: #2d2e3456;
 `;
 
 const QuestCard = styled(View)`
-  width: 90%;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   padding: 20px;
   border-radius: 10px;
   shadow-color: #ffffff;
@@ -55,7 +53,7 @@ const QuestCard = styled(View)`
 const QuestTitle = styled(Text)`
   font-size: 24px;
   font-weight: bold;
-  color: #999999;
+  color: #ffffff;
   margin-bottom: 10px;
 `;
 
@@ -72,11 +70,5 @@ const QuestDetail = styled(Text)`
 `;
 
 const Divider = styled(View)`
-  /* height: 0.5px; */
-  /* background-color: #999; */
   margin: 10px 0;
-`;
-const ShardIcon = styled(Image)`
-  width: 25px;
-  height: 26px;
 `;
