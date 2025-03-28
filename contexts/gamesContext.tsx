@@ -45,6 +45,7 @@ export const GamesProvider: React.FC<{ children: React.ReactNode }> = ({
         setError(`Failed to fetch games: ${response.status}`);
       }
     } catch (err) {
+      console.log(err);
       setError("Error fetching games");
     } finally {
       setLoading(false);

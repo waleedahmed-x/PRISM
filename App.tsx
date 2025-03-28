@@ -2,17 +2,17 @@ import "fast-text-encoding";
 import "react-native-get-random-values";
 import "@ethersproject/shims";
 import { PrivyProvider } from "@privy-io/expo";
+import Profile from "@screens/profile/Profile";
+import Rewards from "@screens/rewards/Rewards";
 import PrismArcade from "@screens/arcade/PrismArcade";
-import ContextProviders from "./utils/ContextProviders";
-import Profile from "@/screens/profile/Profile";
+import Conditional from "@screens/landing/Conditional";
+import EditProfile from "@screens/profile/EditProfile";
+import { ChainProvider } from "@/contexts/chainContext";
+import ContextProviders from "@/utils/ContextProviders";
 import Game from "@screens/arcade/subscreens/GameScreen";
-import EditProfile from "./screens/profile/EditProfile";
 import { NavigationContainer } from "@react-navigation/native";
-import ProfileSettings from "./screens/profile/ProfileSettings";
+import ProfileSettings from "@screens/profile/ProfileSettings";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Conditional from "./screens/landing/Conditional";
-import { ChainProvider } from "./contexts/chainContext";
-import LootBox from "./screens/lootbox/LootBox";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -55,7 +55,7 @@ export default function App() {
               />
               <Stack.Screen
                 name="Lootbox"
-                component={LootBox}
+                component={Rewards}
                 options={{
                   headerShown: false,
                   orientation: "portrait",

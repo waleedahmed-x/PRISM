@@ -17,7 +17,7 @@ import { HeaderBack } from "@/components/header/Header";
 import { PurpleThemeButton } from "@/components/ui/Buttons";
 import AnimatedBackground from "@/components/animations/AnimatedBackground";
 
-export default function LootBox({ navigation }) {
+export default function Rewards({ navigation }) {
   const { games } = useGames();
   return (
     <SuperParent>

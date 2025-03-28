@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   TextInput,
@@ -13,7 +13,6 @@ import Header from "@components/header/Header";
 import { PrismHomeProps } from "@interfaces/arcade";
 import TabNavigator from "@/components/ui/TabNavigator";
 import { useUserDatabase } from "@/contexts/userContext";
-import { usePrivy, useEmbeddedWallet } from "@privy-io/expo";
 import { useGames } from "@/contexts/gamesContext";
 import Loading from "@/components/ui/Loading";
 
@@ -73,27 +72,9 @@ const HeaderProps = ({ navigation }) => {
 export default function PrismArcade({
   navigation,
 }: PrismHomeProps): React.JSX.Element {
-  const wallet = useEmbeddedWallet();
-  const { isReady, user } = usePrivy();
-  const { userDatabase } = useUserDatabase();
   const [searchTerm, setSearchTerm] = useState("");
   const { games, loading, refetchGames } = useGames();
   const [selectedTab, setSelectedTab] = useState("Latest");
-
-  useEffect(() => {
-    if (!isReady) return;
-    if (!user && !userDatabase) navigation.navigate("home");
-    const asyncCreate = async () => {
-      try {
-        await wallet.create();
-      } catch (error) {
-        console.error("Error creating wallet:", error);
-      }
-    };
-    if (wallet.status == "not-created") {
-      asyncCreate();
-    }
-  }, []);
 
   return (
     <SuperParent>
