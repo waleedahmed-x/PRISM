@@ -16,6 +16,7 @@ import { useGames } from "@/contexts/gamesContext";
 import { HeaderBack } from "@/components/header/Header";
 import { PurpleThemeButton } from "@/components/ui/Buttons";
 import AnimatedBackground from "@/components/animations/AnimatedBackground";
+import Lootbox from "./sections/Lootbox";
 
 export default function Rewards({ navigation }) {
   const { games } = useGames();
@@ -126,6 +127,15 @@ export default function Rewards({ navigation }) {
         </TitleBox>
         {quests && quests.map((q, i) => <Quests {...q} key={i} />)}
 
+        <TitleBox>
+          <Title>
+            <TitleImage source={require("@assets/icons/game.png")} />
+            LOOT BOXES
+          </Title>
+          <SubPhrase>Open common & exciting lootboxes to collect</SubPhrase>
+          <SubPhrase>and win exiting rewards!</SubPhrase>
+        </TitleBox>
+        <Lootbox />
         <TitleBox>
           <Title>
             <TitleImage source={require("@assets/icons/game.png")} />
