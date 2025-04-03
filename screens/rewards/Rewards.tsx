@@ -86,6 +86,21 @@ export default function Rewards({ navigation }) {
         </UserStatistics>
         <TitleBox>
           <Title>
+            <TitleImage source={require("@assets/icons/fire.png")} />
+            POWERPOINTS
+          </Title>
+          <SubPhrase>Completed quests, play games, or redeem</SubPhrase>
+          <SubPhrase>powerpoints to get shards, buy now!</SubPhrase>
+          <View style={{ marginBottom: 10 }} />
+          <PurpleThemeButton
+            title="Buy Powerpoints"
+            icon
+            event={() => Alert.alert("Under Development")}
+            styles={{ marginTop: 15 }}
+          />
+        </TitleBox>
+        <TitleBox>
+          <Title>
             <TitleImage source={require("@assets/icons/shard.png")} />
             SHARDS
           </Title>
@@ -98,21 +113,6 @@ export default function Rewards({ navigation }) {
           <View style={{ marginBottom: 10 }} />
           <PurpleThemeButton
             title="Covert to Shards"
-            icon
-            event={() => Alert.alert("Under Development")}
-            styles={{ marginTop: 15 }}
-          />
-        </TitleBox>
-        <TitleBox>
-          <Title>
-            <TitleImage source={require("@assets/icons/fire.png")} />
-            POWERPOINTS
-          </Title>
-          <SubPhrase>Completed quests, play games, or redeem</SubPhrase>
-          <SubPhrase>powerpoints to get shards, buy now!</SubPhrase>
-          <View style={{ marginBottom: 10 }} />
-          <PurpleThemeButton
-            title="Buy Powerpoints"
             icon
             event={() => Alert.alert("Under Development")}
             styles={{ marginTop: 15 }}
