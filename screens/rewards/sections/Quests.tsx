@@ -43,6 +43,7 @@ const QuestCard = styled(View)`
   justify-content: center;
   width: 100%;
   padding: 20px;
+  border: 1px solid #ffffff20;
   border-radius: 10px;
   shadow-color: #ffffff;
   shadow-opacity: 0.25;

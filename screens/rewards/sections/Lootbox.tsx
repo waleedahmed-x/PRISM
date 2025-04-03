@@ -32,6 +32,7 @@ const LootboxContainer = styled(View)`
   height: 240px;
   background-color: #2d2e3456;
   border-radius: 25px;
+  border: 1px solid #ffffff20;
   margin: 20px 20px 0px 20px;
 `;
 const LootboxIcon = styled(Image)`

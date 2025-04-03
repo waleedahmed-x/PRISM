@@ -182,6 +182,7 @@ const UserStatistics = styled(View)`
   margin-top: 10px;
   background-color: #2d2e3456;
   padding: 10px 0px;
+  border: 1px solid #ffffff20;
 `;
 const LabelValue = styled(View)`
   flex-direction: row;
