@@ -39,6 +39,7 @@ export const GamesProvider: React.FC<{ children: React.ReactNode }> = ({
       const response = await axios.get(
         `${process.env.EXPO_PUBLIC_BACKEND_ENDPOINT}/api/games`
       );
+
       if (response.status === 200) {
         setGames(response.data.games);
       } else {
@@ -55,7 +56,7 @@ export const GamesProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     fetchGames();
-  }, [fetchGames]);
+  }, []);
 
   return (
     <GamesContext.Provider

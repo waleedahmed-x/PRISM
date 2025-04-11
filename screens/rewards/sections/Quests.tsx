@@ -4,24 +4,17 @@ import styled from "styled-components/native";
 import { IQuest } from "@/dummy/quests";
 import { PurpleThemeButton } from "@/components/ui/Buttons";
 
-export default function Quests({
-  title,
-  description,
-  reward,
-  progress,
-}: IQuest) {
+export default function Quests({ title, description, reward, game }: IQuest) {
   return (
     <Container>
       <QuestCard>
         <QuestTitle>{title}</QuestTitle>
         <QuestDescription>{description}</QuestDescription>
-        <QuestDetail>Reward: ${reward}</QuestDetail>
-        <QuestDetail>Progress: {progress}%</QuestDetail>
+        <QuestDetail>Reward: {reward} Powerpoint(s)</QuestDetail>
+        <QuestDetail>Game: {game}</QuestDetail>
         <Divider />
         <PurpleThemeButton
-          title={`Earn ${
-            Math.floor(Math.random() * (90 - 10 + 1)) + 10
-          } Power Points`}
+          title={`Earn ${reward} Powerpoints`}
           event={() => {}}
           icon
         />

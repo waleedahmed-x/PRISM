@@ -36,7 +36,7 @@ export default function Game({ navigation }: any) {
     <SafeAreaView style={{ backgroundColor: "#000" }}>
       <Parent>
         {hidden ? (
-          <BackButton onPress={() => navigation.navigate("Prism Arcade")}>
+          <BackButton onPress={() => navigation.goBack()}>
             <Image source={require("@assets/icons/arrow-left.png")} />
           </BackButton>
         ) : (
@@ -46,16 +46,12 @@ export default function Game({ navigation }: any) {
         )}
         <WebView
           originWhitelist={["*"]}
-          // source={{
-          //   uri: "http://54.85.218.15/MergeTheGemsMobile",
-          // }}
           source={{
             uri: `${selectedGame.url}?user=${jwt}&challenge=${encryptedMessage}`,
           }}
           javaScriptEnabled
           incognito
           injectedJavaScript={injectedJavaScript}
-          // eslint-disable-next-line react-native/no-inline-styles
           style={{ flex: 1 }}
           onMessage={() => {}}
         />

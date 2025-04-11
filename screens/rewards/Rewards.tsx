@@ -7,7 +7,7 @@ import {
   Alert,
   Dimensions,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Quests from "./sections/Quests";
 import { quests } from "@/dummy/quests";
 import styled from "styled-components/native";
@@ -17,11 +17,20 @@ import { HeaderBack } from "@/components/header/Header";
 import { PurpleThemeButton } from "@/components/ui/Buttons";
 import AnimatedBackground from "@/components/animations/AnimatedBackground";
 import Lootbox from "./sections/Lootbox";
+import ConversionPopup from "./sections/ConversionPopup";
+import { useGameContext } from "@/contexts/gameContext";
 
 export default function Rewards({ navigation }) {
+  const [showConversionPopup, setShowCononsversionPopup] = useState(false);
   const { games } = useGames();
+  const { setSelectedGame } = useGameContext();
   return (
     <SuperParent>
+      {showConversionPopup && (
+        <ConversionPopup
+          setShowCononsversionPopup={setShowCononsversionPopup}
+        />
+      )}
       <HeaderBack
         navigation={navigation}
         navigateTo="Home"
@@ -89,13 +98,18 @@ export default function Rewards({ navigation }) {
             <TitleImage source={require("@assets/icons/fire.png")} />
             POWERPOINTS
           </Title>
-          <SubPhrase>Completed quests, play games, or redeem</SubPhrase>
-          <SubPhrase>powerpoints to get shards, buy now!</SubPhrase>
+          <SubPhrase>
+            Unleash your skills to rack up Powerpoints! Turn your Powerpoints
+            into shards!
+          </SubPhrase>
           <View style={{ marginBottom: 10 }} />
           <PurpleThemeButton
-            title="Buy Powerpoints"
+            title="Earn Powerpoints"
             icon
-            event={() => Alert.alert("Under Development")}
+            event={() => {
+              navigation.navigate("Game");
+              setSelectedGame(games[0]); // TODO: What game should be selected?
+            }}
             styles={{ marginTop: 15 }}
           />
         </TitleBox>
@@ -104,8 +118,9 @@ export default function Rewards({ navigation }) {
             <TitleImage source={require("@assets/icons/shard.png")} />
             SHARDS
           </Title>
-          <SubPhrase>Open lootboxes to get a chance to</SubPhrase>
-          <SubPhrase>collect shards or buy!</SubPhrase>
+          <SubPhrase>
+            Crack open lootboxes for a shot at snagging valuable shards!
+          </SubPhrase>
           <SubPhraseInfo>
             <InfoIcon source={require("@assets/icons/info.png")} />
             1000 powerpoints equals 1 shard
@@ -114,7 +129,7 @@ export default function Rewards({ navigation }) {
           <PurpleThemeButton
             title="Covert to Shards"
             icon
-            event={() => Alert.alert("Under Development")}
+            event={() => setShowCononsversionPopup(true)}
             styles={{ marginTop: 15 }}
           />
         </TitleBox>
@@ -123,7 +138,9 @@ export default function Rewards({ navigation }) {
             <TitleImage source={require("@assets/icons/quest.png")} />
             QUESTS
           </Title>
-          <SubPhrase>Complete quests and win exciting rewards!</SubPhrase>
+          <SubPhrase>
+            Embark on epic quests and claim thrilling rewards!
+          </SubPhrase>
         </TitleBox>
         {quests && quests.map((q, i) => <Quests {...q} key={i} />)}
 
@@ -132,8 +149,10 @@ export default function Rewards({ navigation }) {
             <TitleImage source={require("@assets/icons/game.png")} />
             LOOT BOXES
           </Title>
-          <SubPhrase>Open common & exciting lootboxes to collect</SubPhrase>
-          <SubPhrase>and win exiting rewards!</SubPhrase>
+          <SubPhrase>
+            Unlock common and epic lootboxes to score amazing rewards and
+            surprises!
+          </SubPhrase>
         </TitleBox>
         <Lootbox />
         <TitleBox>
@@ -141,8 +160,10 @@ export default function Rewards({ navigation }) {
             <TitleImage source={require("@assets/icons/game.png")} />
             GAMES
           </Title>
-          <SubPhrase>Start by playing one of our popular games</SubPhrase>
-          <SubPhrase>and win exiting rewards!</SubPhrase>
+          <SubPhrase>
+            Play games to win powerpoints, lootboxes, and incredible rewards
+            full of excitement!
+          </SubPhrase>
         </TitleBox>
         {games &&
           games
@@ -229,7 +250,10 @@ const SubPhrase = styled(Text)`
   color: #b6b6b6;
   font-size: 18px;
   font-weight: 600;
+  line-height: 30px;
   margin-top: 10px;
+  text-align: center;
+  padding: 0px 20px;
 `;
 const InfoIcon = styled(Image)`
   width: 14px;
