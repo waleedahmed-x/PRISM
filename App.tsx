@@ -3,7 +3,7 @@ import "react-native-get-random-values";
 import "@ethersproject/shims";
 import { PrivyProvider } from "@privy-io/expo";
 import Profile from "@screens/profile/Profile";
-import Rewards from "@screens/rewards/Rewards";
+import Lootbox from "@/screens/lootbox/Lootbox";
 import PrismArcade from "@screens/arcade/PrismArcade";
 import Conditional from "@screens/landing/Conditional";
 import EditProfile from "@screens/profile/EditProfile";
@@ -55,7 +55,7 @@ export default function App() {
               />
               <Stack.Screen
                 name="Lootbox"
-                component={Rewards}
+                component={Lootbox}
                 options={{
                   headerShown: false,
                   orientation: "portrait",

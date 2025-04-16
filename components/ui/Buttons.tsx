@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  ViewStyle,
 } from "react-native";
 import styled from "styled-components/native";
 import LinearGradient from "react-native-linear-gradient";
@@ -257,7 +258,7 @@ const ButtonBody = styled(TouchableOpacity)`
   width: 90%;
   height: 60px;
   border-radius: 50px;
-  margin-top: 20px;
+  margin: 10px;
   background-color: #997fff51;
 `;
 const IconImage = styled(Image)`
@@ -268,4 +269,48 @@ const Title = styled(Text)`
   font-weight: 700;
   font-size: 20px;
   color: #d5e4f7;
+`;
+
+const TouchableParent = styled(TouchableOpacity)`
+  width: 90%;
+  height: 50px;
+  margin: 20px 0px;
+  shadow-color: #73c9f4;
+`;
+
+export function CyanHollowButton({
+  event,
+  icon,
+  title,
+  styles,
+}: {
+  event: () => void;
+  icon?: Boolean;
+  title: string;
+  styles?: ViewStyle;
+}) {
+  return (
+    // @ts-ignore
+    <TouchableParent onPress={event} style={styles}>
+      {/* @ts-ignore */}
+      <CyanHollowParent>
+        <HollowTitle>{title}</HollowTitle>
+      </CyanHollowParent>
+    </TouchableParent>
+  );
+}
+const CyanHollowParent = styled(View)`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 55px;
+  border-radius: 50px;
+  border: 2px solid #6fc4f4;
+`;
+const HollowTitle = styled(Text)`
+  font-weight: 700;
+  font-size: 20px;
+  color: #6fc4f4;
 `;

@@ -7,15 +7,18 @@ export default function Lootbox() {
     <Parent>
       <ScrollView horizontal>
         <LootboxContainer>
-          <LootboxIcon source={require("@assets/icons/Clootbox.png")} />
+          <Zaxis source={require("@assets/icons/Zaxis-border.png")} />
+          <LootboxIcon source={require("@assets/icons/lootbox.png")} />
           <CommonLoot>Common Lootbox</CommonLoot>
         </LootboxContainer>
         <LootboxContainer>
-          <LootboxIcon source={require("@assets/icons/Clootbox.png")} />
+          <Zaxis source={require("@assets/icons/Zaxis-border.png")} />
+          <LootboxIcon source={require("@assets/icons/lootbox.png")} />
           <EpicLoot>Epic Lootbox</EpicLoot>
         </LootboxContainer>
         <LootboxContainer>
-          <LootboxIcon source={require("@assets/icons/Clootbox.png")} />
+          <Zaxis source={require("@assets/icons/Zaxis-border.png")} />
+          <LootboxIcon source={require("@assets/icons/lootbox.png")} />
           <CommonLoot>Common Lootbox</CommonLoot>
         </LootboxContainer>
       </ScrollView>
@@ -26,14 +29,22 @@ const Parent = styled(View)`
   width: 100%;
 `;
 const LootboxContainer = styled(View)`
+  position: relative;
   align-items: center;
   justify-content: center;
   width: 330px;
   height: 240px;
-  background-color: #2d2e3456;
-  border-radius: 25px;
-  border: 1px solid #ffffff20;
+  background-color: #2d2e3426;
+  border-radius: 35px;
+  border: 1px solid #1c1c1c;
   margin: 20px 20px 0px 20px;
+`;
+const Zaxis = styled(Image)`
+  position: absolute;
+  top: -20px;
+  right: 0px;
+  width: 50%;
+  object-fit: contain;
 `;
 const LootboxIcon = styled(Image)`
   width: 150px;

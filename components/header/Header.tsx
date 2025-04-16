@@ -40,7 +40,7 @@ export function HeaderBack({
 }: HeaderProps): React.JSX.Element {
   return (
     // eslint-disable-next-line react-native/no-inline-styles
-    <SafeAreaView style={{ width: "100%", position: "relative" }}>
+    <SafeAreaView style={{ width: "100%", position: "relative", zIndex: 200 }}>
       <HeaderParentBack>
         <BackNTitle>
           <RoundClickable

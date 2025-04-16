@@ -1,35 +1,33 @@
-import { View, Text, Image, Dimensions } from "react-native";
+import { View, Text, Image, Dimensions, Alert } from "react-native";
 import React from "react";
 import styled from "styled-components/native";
 import { IQuest } from "@/dummy/quests";
-import { PurpleThemeButton } from "@/components/ui/Buttons";
+import LootboxCard from "@/components/LootboxCard";
+import { CyanGlowButton } from "@/components/ui/CyanAnimatedButton";
 
 export default function Quests({ title, description, reward, game }: IQuest) {
   return (
-    <Container>
-      <QuestCard>
-        <QuestTitle>{title}</QuestTitle>
-        <QuestDescription>{description}</QuestDescription>
-        <QuestDetail>Reward: {reward} Powerpoint(s)</QuestDetail>
-        <QuestDetail>Game: {game}</QuestDetail>
-        <Divider />
-        <PurpleThemeButton
-          title={`Earn ${reward} Powerpoints`}
-          event={() => {}}
-          icon
-        />
-      </QuestCard>
-    </Container>
+    <LootboxCard styles={{ marginTop: 20 }}>
+      <Container>
+        <QuestCard>
+          <QuestTitle>{title}</QuestTitle>
+          <QuestDescription>{description}</QuestDescription>
+          <QuestDetail>Reward: {reward} Powerpoint(s)</QuestDetail>
+          <QuestDetail>Game: {game}</QuestDetail>
+          <Divider />
+          <CyanGlowButton
+            title={`Earn ${reward} Powerpoints`}
+            event={() => Alert.alert("Under Development")}
+          />
+        </QuestCard>
+      </Container>
+    </LootboxCard>
   );
 }
 
 const Container = styled(View)`
   width: ${Dimensions.get("screen").width / 1.1}px;
   align-self: center;
-  border-radius: 25px;
-  margin-top: 15px;
-  border: 1px solid #ffffff20;
-  background-color: #2d2e3456;
 `;
 
 const QuestCard = styled(View)`
@@ -37,11 +35,6 @@ const QuestCard = styled(View)`
   justify-content: center;
   width: 100%;
   padding: 20px;
-  border-radius: 10px;
-  shadow-color: #ffffff;
-  shadow-opacity: 0.25;
-  shadow-radius: 3.84px;
-  elevation: 5;
 `;
 
 const QuestTitle = styled(Text)`

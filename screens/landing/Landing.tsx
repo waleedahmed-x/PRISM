@@ -109,12 +109,12 @@ export default function Landing({ navigation }: any) {
           }}
           resizeMode="contain"
         />
-        <PrismAnimationParent>
+        {/* <PrismAnimationParent>
           <PrismAnimation
             source={require("@assets/splash/splash.gif")}
             resizeMode="contain"
           />
-        </PrismAnimationParent>
+        </PrismAnimationParent> */}
       </AnimationsContainer>
       <PlayParent onPress={() => navigation.navigate("Prism Arcade")}>
         <AnimatedShineTop

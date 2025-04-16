@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Alert,
   Dimensions,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
 import Quests from "./sections/Quests";
@@ -14,16 +15,33 @@ import styled from "styled-components/native";
 import ArcadeCard from "@/components/ArcadeCard";
 import { useGames } from "@/contexts/gamesContext";
 import { HeaderBack } from "@/components/header/Header";
-import { PurpleThemeButton } from "@/components/ui/Buttons";
-import AnimatedBackground from "@/components/animations/AnimatedBackground";
 import Lootbox from "./sections/Lootbox";
 import ConversionPopup from "./sections/ConversionPopup";
 import { useGameContext } from "@/contexts/gameContext";
+import LootboxCard from "@/components/LootboxCard";
+import useCustomFont from "@/hooks/useFonts";
+import { CyanGlowButton } from "@/components/ui/CyanAnimatedButton";
+const LoadingContainer = styled(View)`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+`;
 
-export default function Rewards({ navigation }) {
+export default function LootboxLanding({ navigation }) {
   const [showConversionPopup, setShowCononsversionPopup] = useState(false);
   const { games } = useGames();
   const { setSelectedGame } = useGameContext();
+  const fontsLoaded = useCustomFont();
+
+  if (!fontsLoaded) {
+    return (
+      <LoadingContainer>
+        <ActivityIndicator size="large" color="#fff" />
+      </LoadingContainer>
+    );
+  }
+
   return (
     <SuperParent>
       {showConversionPopup && (
@@ -59,25 +77,25 @@ export default function Rewards({ navigation }) {
         }
       />
       <ScrollView>
-        {/* <BGVector source={require("@assets/images/vector-bg.png")} /> */}
-        <AnimatedBackground />
+        <BGVector source={require("@assets/images/lootbox-bg.png")} />
+        {/* <AnimatedBackground /> */}
         <TitleBox>
           <Title>WELCOME</Title>
           <SubPhrase>
             Win prizes, visit everyday to earn exciting rewards!
           </SubPhrase>
         </TitleBox>
-        <UserStatistics>
+        <LootboxCard>
           <LabelValue>
             <Label>Common Shards</Label>
             <Inventory>
-              5 <StatsIcon source={require("@assets/icons/epic-shard.png")} />
+              2 <StatsIcon source={require("@assets/icons/shard.png")} />
             </Inventory>
           </LabelValue>
           <LabelValue>
             <Label>Epic Shards</Label>
             <Inventory>
-              2 <StatsIcon source={require("@assets/icons/shard.png")} />
+              5 <StatsIcon source={require("@assets/icons/epic-shard.png")} />
             </Inventory>
           </LabelValue>
           <LabelValue>
@@ -92,7 +110,7 @@ export default function Rewards({ navigation }) {
               1/5 <StatsIcon source={require("@assets/icons/quest.png")} />
             </Inventory>
           </LabelValue>
-        </UserStatistics>
+        </LootboxCard>
         <TitleBox>
           <Title>
             <TitleImage source={require("@assets/icons/fire.png")} />
@@ -103,7 +121,7 @@ export default function Rewards({ navigation }) {
             into shards!
           </SubPhrase>
           <View style={{ marginBottom: 10 }} />
-          <PurpleThemeButton
+          <CyanGlowButton
             title="Earn Powerpoints"
             icon
             event={() => {
@@ -115,7 +133,7 @@ export default function Rewards({ navigation }) {
         </TitleBox>
         <TitleBox>
           <Title>
-            <TitleImage source={require("@assets/icons/shard.png")} />
+            <TitleImage source={require("@assets/icons/epic-shard.png")} />
             SHARDS
           </Title>
           <SubPhrase>
@@ -126,10 +144,10 @@ export default function Rewards({ navigation }) {
             1000 powerpoints equals 1 shard
           </SubPhraseInfo>
           <View style={{ marginBottom: 10 }} />
-          <PurpleThemeButton
-            title="Covert to Shards"
+          <CyanGlowButton
             icon
-            event={() => setShowCononsversionPopup(true)}
+            title="Covert to Shards"
+            event={() => navigation.navigate("Shards Convert")}
             styles={{ marginTop: 15 }}
           />
         </TitleBox>
@@ -146,7 +164,7 @@ export default function Rewards({ navigation }) {
 
         <TitleBox>
           <Title>
-            <TitleImage source={require("@assets/icons/game.png")} />
+            <TitleImage source={require("@assets/icons/lootbox.png")} />
             LOOT BOXES
           </Title>
           <SubPhrase>
@@ -196,15 +214,7 @@ const BGVector = styled(Image)`
   top: -70px;
   width: 100%;
 `;
-const UserStatistics = styled(View)`
-  width: 90%;
-  align-self: center;
-  border-radius: 20px;
-  margin-top: 10px;
-  background-color: #2d2e3456;
-  padding: 10px 0px;
-  border: 1px solid #ffffff20;
-`;
+
 const LabelValue = styled(View)`
   flex-direction: row;
   align-items: center;
@@ -245,6 +255,9 @@ const Title = styled(Text)`
   color: white;
   font-size: 30px;
   font-weight: 800;
+  font-family: "TachyonRegular";
+  letter-spacing: 6px;
+  text-transform: uppercase;
 `;
 const SubPhrase = styled(Text)`
   color: #b6b6b6;
