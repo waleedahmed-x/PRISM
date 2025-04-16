@@ -5,6 +5,7 @@ import {
   Image,
   Alert,
   TouchableOpacity,
+  TextInput,
 } from "react-native";
 import React, { useState } from "react";
 import { HeaderBack } from "@/components/header/Header";
@@ -16,6 +17,10 @@ import { CyanGlowButton } from "@/components/ui/CyanAnimatedButton";
 export default function ShardsConvert({ navigation }) {
   const [balance, _setBalance] = useState(5500);
   const [shards, setShards] = useState(0);
+  const [inputPoints, setInputPoints] = useState("0");
+
+  const parsedPoints = parseInt(inputPoints) || 0;
+  const calculatedShards = Math.floor(parsedPoints / 1000);
   const handleAdd = () => {
     if (balance >= (shards + 1) * 1000) {
       setShards(shards + 1);
@@ -59,16 +64,20 @@ export default function ShardsConvert({ navigation }) {
         <ConversionContainer>
           <PointsContainer>
             <Zaxis source={require("@assets/icons/Zaxis-border.png")} />
-            <AssetTitle>powerpoints</AssetTitle>
-            <AssetBalance>500</AssetBalance>
+            <AssetTitle>Powerpoints</AssetTitle>
+            <StyledInput
+              value={inputPoints}
+              onChangeText={setInputPoints}
+              keyboardType="numeric"
+              placeholder="0"
+              placeholderTextColor="#aaa"
+            />
           </PointsContainer>
-          <Inverter>
-            <Invert source={require("@assets/icons/inverter.png")} />
-          </Inverter>
+
           <PointsContainer>
             <Zaxis source={require("@assets/icons/Zaxis-border.png")} />
-            <AssetTitle>shards</AssetTitle>
-            <AssetBalance>3</AssetBalance>
+            <AssetTitle>Shards</AssetTitle>
+            <AssetBalance>{calculatedShards}</AssetBalance>
           </PointsContainer>
         </ConversionContainer>
         <CyanGlowButton title="Convert to Shards" event={() => {}} icon />
@@ -93,6 +102,14 @@ const Inverter = styled(TouchableOpacity)`
   position: relative;
   width: 100%;
 `;
+const StyledInput = styled(TextInput)`
+  font-family: "TachyonRegular";
+  letter-spacing: 6px;
+  color: #aaa;
+  font-size: 30px;
+  padding: 10px 0px 10px 30px;
+`;
+
 const Invert = styled(Image)`
   position: absolute;
   top: -25px;
