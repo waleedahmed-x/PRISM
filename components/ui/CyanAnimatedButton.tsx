@@ -55,29 +55,18 @@ export function CyanGlowButton({
   };
 
   return (
-    <Animated.View
-      style={[
-        animatedStyle,
-        {
-          width: "100%",
-        },
-      ]}
-    >
+    // @ts-ignore
+    <TouchableParent onPress={event} style={[styles, animatedStyle]}>
       {/* @ts-ignore */}
-      <TouchableParent onPress={event} style={styles}>
-        {/* @ts-ignore */}
-        <CyanParent>
-          {icon && (
-            <CyanIconImage source={require("@assets/icons/stars.png")} />
-          )}
-          <Title>{title}</Title>
-        </CyanParent>
-      </TouchableParent>
-    </Animated.View>
+      <CyanParent>
+        {icon && <CyanIconImage source={require("@assets/icons/stars.png")} />}
+        <Title>{title}</Title>
+      </CyanParent>
+    </TouchableParent>
   );
 }
 const TouchableParent = styled(TouchableOpacity)`
-  width: 100%;
+  width: 90%;
   height: 50px;
   margin: 20px 0px 10px 0px;
   shadow-color: #73c9f4;
@@ -88,11 +77,10 @@ const CyanParent = styled(LinearGradient).attrs({
   end: { x: 1, y: 0 },
 })`
   display: flex;
-  align-self: center;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 90%;
+  width: 100%;
   height: 55px;
   border-radius: 50px;
 `;

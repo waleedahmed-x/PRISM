@@ -76,8 +76,8 @@ export default function LootboxLanding({ navigation }) {
           </TouchableOpacity>
         }
       />
+      <BGVector source={require("@assets/images/lootbox-bg.png")} />
       <ScrollView>
-        <BGVector source={require("@assets/images/lootbox-bg.png")} />
         {/* <AnimatedBackground /> */}
         <TitleBox>
           <Title>WELCOME</Title>
