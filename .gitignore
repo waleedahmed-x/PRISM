@@ -1,14 +1,15 @@
 node_modules
-# build
+splash.gif
+build
 # OSX
 #
-# .DS_Store
-# .expo
+.DS_Store
+.expo
 # Android/IntelliJ
 #
-# build/
-# .idea
-# .gradle
+build/
+.idea
+.gradle
 # local.properties
 # *.iml
 # *.hprof
@@ -18,7 +19,7 @@ node_modules
 # *.jsbundle
 # OSX
 #
-# .DS_Store
+.DS_Store
 # .env
 # env
 # Xcode
