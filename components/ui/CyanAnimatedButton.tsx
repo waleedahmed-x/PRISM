@@ -28,12 +28,12 @@ export function CyanGlowButton({
         Animated.timing(glowAnim, {
           toValue: 1,
           duration: 3000,
-          useNativeDriver: false,
+          useNativeDriver: true,
         }),
         Animated.timing(glowAnim, {
           toValue: 0,
           duration: 3000,
-          useNativeDriver: false,
+          useNativeDriver: true,
         }),
       ])
     ).start();
@@ -87,7 +87,7 @@ const CyanParent = styled(LinearGradient).attrs({
 const Title = styled(Text)`
   font-weight: 700;
   font-size: 20px;
-  color: #d5e4f7;
+  color: #ffffff;
 `;
 const CyanIconImage = styled(Image)`
   width: 30px;

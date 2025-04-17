@@ -35,12 +35,6 @@ export default function ShardsConvert({ navigation }) {
     }
   };
 
-  const handleSubtract = () => {
-    if (shards > 0) {
-      setShards(shards - 1);
-    }
-  };
-
   const fontsLoaded = useCustomFont();
 
   if (!fontsLoaded) {
@@ -67,7 +61,19 @@ export default function ShardsConvert({ navigation }) {
             <AssetTitle>Powerpoints</AssetTitle>
             <StyledInput
               value={inputPoints}
-              onChangeText={setInputPoints}
+              onChangeText={(value) => {
+                const sanitized = value.replace(/[^0-9]/g, "");
+                const numericValue = parseInt(sanitized || "0");
+                if (numericValue > balance) {
+                  Alert.alert(
+                    "Insufficient Powerpoints",
+                    `You only have ${balance} Powerpoints. The input has been adjusted to your maximum balance.`
+                  );
+                  setInputPoints(balance.toString());
+                } else {
+                  setInputPoints(sanitized);
+                }
+              }}
               keyboardType="numeric"
               placeholder="0"
               placeholderTextColor="#aaa"
@@ -93,15 +99,11 @@ const Parent = styled(View)`
   background: #000;
 `;
 const CenterContainer = styled(View)`
-  /* justify-content: center; */
   align-items: center;
   width: 100%;
   height: 100%;
 `;
-const Inverter = styled(TouchableOpacity)`
-  position: relative;
-  width: 100%;
-`;
+
 const StyledInput = styled(TextInput)`
   font-family: "TachyonRegular";
   letter-spacing: 6px;
@@ -110,13 +112,6 @@ const StyledInput = styled(TextInput)`
   padding: 10px 0px 10px 30px;
 `;
 
-const Invert = styled(Image)`
-  position: absolute;
-  top: -25px;
-  left: 42%;
-  width: 50px;
-  height: 50px;
-`;
 const PointsContainer = styled(View)`
   position: relative;
   background-color: #3e3e3e44;
