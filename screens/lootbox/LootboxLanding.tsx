@@ -19,7 +19,6 @@ import Lootbox from "./sections/Lootbox";
 import ConversionPopup from "./sections/ConversionPopup";
 import { useGameContext } from "@/contexts/gameContext";
 import LootboxCard from "@/components/LootboxCard";
-import useCustomFont from "@/hooks/useFonts";
 import { CyanGlowButton } from "@/components/ui/CyanAnimatedButton";
 const LoadingContainer = styled(View)`
   flex: 1;
@@ -32,15 +31,6 @@ export default function LootboxLanding({ navigation }) {
   const [showConversionPopup, setShowCononsversionPopup] = useState(false);
   const { games } = useGames();
   const { setSelectedGame } = useGameContext();
-  const fontsLoaded = useCustomFont();
-
-  if (!fontsLoaded) {
-    return (
-      <LoadingContainer>
-        <ActivityIndicator size="large" color="#fff" />
-      </LoadingContainer>
-    );
-  }
 
   return (
     <SuperParent>
@@ -255,7 +245,6 @@ const Title = styled(Text)`
   color: white;
   font-size: 30px;
   font-weight: 800;
-  font-family: "TachyonRegular";
   letter-spacing: 6px;
   text-transform: uppercase;
 `;

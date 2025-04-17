@@ -4,46 +4,20 @@ import {
   ActivityIndicator,
   Image,
   Alert,
-  TouchableOpacity,
   TextInput,
 } from "react-native";
 import React, { useState } from "react";
 import { HeaderBack } from "@/components/header/Header";
 import styled from "styled-components/native";
-import useCustomFont from "@/hooks/useFonts";
 import { CyanHollowButton } from "@/components/ui/Buttons";
 import { CyanGlowButton } from "@/components/ui/CyanAnimatedButton";
 
 export default function ShardsConvert({ navigation }) {
   const [balance, _setBalance] = useState(5500);
-  const [shards, setShards] = useState(0);
   const [inputPoints, setInputPoints] = useState("0");
 
   const parsedPoints = parseInt(inputPoints) || 0;
   const calculatedShards = Math.floor(parsedPoints / 1000);
-  const handleAdd = () => {
-    if (balance >= (shards + 1) * 1000) {
-      setShards(shards + 1);
-    } else {
-      const needed = (shards + 1) * 1000 - balance;
-      Alert.alert(
-        "Insufficient Powerpoints",
-        `Your current balance is ${balance} Powerpoints. You need ${needed} more Powerpoints to convert ${
-          shards + 1
-        } Shards.`
-      );
-    }
-  };
-
-  const fontsLoaded = useCustomFont();
-
-  if (!fontsLoaded) {
-    return (
-      <LoadingContainer>
-        <ActivityIndicator size="large" color="#fff" />
-      </LoadingContainer>
-    );
-  }
   return (
     <Parent>
       <HeaderBack
@@ -105,7 +79,6 @@ const CenterContainer = styled(View)`
 `;
 
 const StyledInput = styled(TextInput)`
-  font-family: "TachyonRegular";
   letter-spacing: 6px;
   color: #aaa;
   font-size: 30px;
@@ -127,7 +100,6 @@ const Zaxis = styled(Image)`
   object-fit: contain;
 `;
 const AssetTitle = styled(Text)`
-  font-family: "TachyonRegular";
   letter-spacing: 6px;
   text-transform: uppercase;
   color: #fff;
@@ -135,7 +107,6 @@ const AssetTitle = styled(Text)`
   padding: 20px 0px 0px 20px;
 `;
 const AssetBalance = styled(Text)`
-  font-family: "TachyonRegular";
   letter-spacing: 6px;
   color: #aaa;
   font-size: 30px;
@@ -147,7 +118,6 @@ const Title = styled(Text)`
   margin-top: 20px;
   text-align: center;
   padding: 0px 10px;
-  font-family: "TachyonRegular";
   letter-spacing: 6px;
   text-transform: uppercase;
 `;
