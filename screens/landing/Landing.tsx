@@ -7,7 +7,6 @@ import {
   Dimensions,
   Easing,
 } from "react-native";
-import { usePrivy } from "@privy-io/expo";
 import styled from "styled-components/native";
 import AsyncLogger from "@/utils/AsyncLogger";
 import FastImage from "react-native-fast-image";

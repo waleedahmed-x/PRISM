@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import { useUserDatabase } from "@/contexts/userContext";
 
 export default function Conditional({ navigation }: any) {
-  const { user } = usePrivy();
+  const { user, logout } = usePrivy();
   const { userDatabase } = useUserDatabase();
   const [DBsatisfied, setDBsatisfied] = useState(false);
   const fadeAnim = useState(new Animated.Value(0))[0];
@@ -26,11 +26,11 @@ export default function Conditional({ navigation }: any) {
   return (
     <SuperParent>
       <Parent style={{ opacity: fadeAnim }}>
-        {/* {user && DBsatisfied ? ( */}
-        <Landing navigation={navigation} />
-        {/* ) : (
-           <Login navigation={navigation} setDBsatisfied={setDBsatisfied} />
-         )} */}
+        {user && DBsatisfied ? (
+          <Landing navigation={navigation} />
+        ) : (
+          <Login navigation={navigation} setDBsatisfied={setDBsatisfied} />
+        )}
       </Parent>
     </SuperParent>
   );

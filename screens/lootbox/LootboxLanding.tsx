@@ -6,9 +6,8 @@ import {
   TouchableOpacity,
   Alert,
   Dimensions,
-  ActivityIndicator,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Quests from "./sections/Quests";
 import { quests } from "@/dummy/quests";
 import styled from "styled-components/native";
@@ -20,17 +19,110 @@ import ConversionPopup from "./sections/ConversionPopup";
 import { useGameContext } from "@/contexts/gameContext";
 import LootboxCard from "@/components/LootboxCard";
 import { CyanGlowButton } from "@/components/ui/CyanAnimatedButton";
-const LoadingContainer = styled(View)`
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  background: #000;
-`;
+// import axios from "axios";
+// import { useEmbeddedWallet, usePrivy } from "@privy-io/expo";
+// const LoadingContainer = styled(View)`
+//   flex: 1;
+//   align-items: center;
+//   justify-content: center;
+//   background: #000;
+// `;
 
 export default function LootboxLanding({ navigation }) {
   const [showConversionPopup, setShowCononsversionPopup] = useState(false);
   const { games } = useGames();
   const { setSelectedGame } = useGameContext();
+  // const { user, getAccessToken } = usePrivy();
+  // const { account } = useEmbeddedWallet();
+  // useEffect(() => {
+  // ? GET DATASHARDS
+  // ? axios
+  // ?   .get("http://localhost:4001/data-shards", {
+  // ?     params: {
+  // ?       userId: user?.id,
+  // ?     },
+  // ?   })
+  // ?   .then((res) => {
+  // ?     console.log(res);
+  // ?   })
+  // ?   .catch((err) => {
+  // ?     console.log(JSON.stringify(err));
+  // ?   });
+  // ? GET DATASHARDS
+  // ! GET AUTHENTICATED
+  // ! let token: string;
+  // ! async function getToken() {
+  // !   token = await getAccessToken();
+  // ! }
+  // ! getToken();
+  // ! axios
+  // !   .post(
+  // !     "http://localhost:4001/api/v1",
+  // !     {},
+  // !     {
+  // !       headers: {
+  // !         Authorization: `Bearer ${token}`,
+  // !       },
+  // !     }
+  // !   )
+  // !   .then((res) => {
+  // !     console.log(res.data);
+  // !   })
+  // !   .catch((err) => {
+  // !     console.log(JSON.stringify(err));
+  // !   });
+  // ! GET AUTHENTICATED
+  // ? CREATE POWERPOINTS
+  // ? axios
+  // ?   .post("http://localhost:4001/power-points", {
+  // ?     userIdentifier: "0x365D399b21EaDc16731d9bfc33be35f792f0B18C",
+  // ?     providerApp: "Prism Arcade",
+  // ?     amount: 100,
+  // ?   })
+  // ?   .then((res) => {
+  // ?     console.log(res.data);
+  // ?   })
+  // ?   .catch((err) => {
+  // ?     console.log(JSON.stringify(err));
+  // ?   });
+  // ? CREATE POWERPOINTS
+  // ! USER'S POWERPOINTS
+  // ! axios.get('http://localhost:4001/power-points/linked', {
+  // ! evmWalletAddress: account?.address,
+  // ! }).then((res) => {
+  // !   console.log(res.data);
+  // ! }).catch((err) => {
+  // !   console.log(JSON.stringify(err));
+  // ! });
+  // ! USER'S POWERPOINTS
+  // ? GET ALL USERS
+  // ? axios
+  // ?   .get("http://localhost:4001/users", {
+  // ?     params: {
+  // ?       filters: JSON.stringify({
+  // ?         evmWalletAddress: account?.address,
+  // ?       }),
+  // ?     },
+  // ?   })
+  // ?   .then((res) => {
+  // ?     console.log(res.data);
+  // ?   })
+  // ?   .catch((err) => {
+  // ?     console.log(JSON.stringify(err));
+  // ?   });
+  // ? GET ALL USERS
+  // ! GET USER'S SHARDS DATA
+  // ! axios.get('http://localhost:4001/data-shards', {
+  // !   params: {
+  // !     userId: 123, // from user lookup
+  // !   },
+  // ! }).then((res) => {
+  // !   console.log(res.data);
+  // ! }).catch((err) => {
+  // !   console.log(JSON.stringify(err));
+  // ! });
+  // ! GET USER'S SHARDS DATA
+  // }, []);
 
   return (
     <SuperParent>

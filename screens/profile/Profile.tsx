@@ -25,6 +25,7 @@ export default function Profile({ navigation }: any) {
   const chainContext = useChainContext();
   let username = userDatabase?.username;
   const wallet = useEmbeddedWallet();
+  console.log(wallet);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);

@@ -61,7 +61,11 @@ export default function ShardsConvert({ navigation }) {
           </PointsContainer>
         </ConversionContainer>
         <CyanGlowButton title="Convert to Shards" event={() => {}} icon />
-        <CyanHollowButton title="Close" event={() => {}} icon />
+        {/* <CyanHollowButton
+          title="Close"
+          event={() => navigation.goBack()}
+          icon
+        /> */}
       </CenterContainer>
     </Parent>
   );
