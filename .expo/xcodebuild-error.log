@@ -1,3 +1,3 @@
 --- xcodebuild: WARNING: Using the first of multiple matching destinations:
-{ platform:iOS Simulator, id:53575BCC-C2A1-4F4D-83A0-700DCDC88931, OS:18.1, name:iPhone 16 Pro }
-{ platform:iOS Simulator, id:53575BCC-C2A1-4F4D-83A0-700DCDC88931, OS:18.1, name:iPhone 16 Pro }
+{ platform:iOS Simulator, arch:arm64, id:C2308999-1151-43BA-92AB-0ACBC4213C25, OS:18.4, name:iPhone 16 Pro }
+{ platform:iOS Simulator, arch:x86_64, id:C2308999-1151-43BA-92AB-0ACBC4213C25, OS:18.4, name:iPhone 16 Pro }

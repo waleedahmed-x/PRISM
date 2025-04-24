@@ -18,7 +18,7 @@ import { useUserDatabase } from "@/contexts/userContext";
 import updateUser from "@/hooks/useEditUser";
 import { usePrivy } from "@privy-io/expo";
 import { useEmbeddedWallet, isNotCreated } from "@privy-io/expo";
-import Clipboard from "@react-native-clipboard/clipboard";
+import * as Clipboard from "expo-clipboard";
 
 export default function EditProfile({ navigation }: any) {
   const { user } = usePrivy();
@@ -139,11 +139,11 @@ export default function EditProfile({ navigation }: any) {
             <Labels>
               <Label>Embedded Wallet Address</Label>
               <Copy
-                onPress={() => {
+                onPress={async () => {
                   Alert.alert("Address Copied");
                   console.log("copied");
 
-                  Clipboard.setString(wallet.account.address);
+                  await Clipboard.setStringAsync(wallet.account.address);
                 }}
               >
                 <Label>Copy Now</Label>

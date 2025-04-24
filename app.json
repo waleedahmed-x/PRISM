@@ -4,7 +4,10 @@
     "slug": "prism",
     "version": "1.0.0",
     "orientation": "portrait",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "icon": "./assets/splash/splash.png",
     "userInterfaceStyle": "light",
     "splash": {
@@ -19,7 +22,8 @@
       "infoPlist": {
         "NSPhotoLibraryUsageDescription": "This app needs access to your photo library to upload your profile picture.",
         "NSCameraUsageDescription": "This app needs access to your camera to take profile pictures."
-      }
+      },
+      "appleTeamId": "GGU5VHWX77"
     },
     "android": {
       "package": "gg.gamegpt.prism",
@@ -32,7 +36,9 @@
     "web": {
       "favicon": "./assets/splash/splash.png"
     },
-    "plugins": ["expo-secure-store"],
+    "plugins": [
+      "expo-secure-store"
+    ],
     "extra": {
       "eas": {
         "projectId": "92856fda-b6b7-4cf8-af9b-9b334b73a105"

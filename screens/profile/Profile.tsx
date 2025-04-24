@@ -12,7 +12,7 @@ import {
   View,
   Modal,
 } from "react-native";
-import Clipboard from "@react-native-clipboard/clipboard";
+import * as Clipboard from "expo-clipboard";
 import styled from "styled-components/native";
 import { useEmbeddedWallet } from "@privy-io/expo";
 import { useUserDatabase } from "@/contexts/userContext";
@@ -102,8 +102,8 @@ export default function Profile({ navigation }: any) {
               </Refer>
             </SalesRepContent>
             <ReferButton
-              onPress={() => {
-                Clipboard.setString(
+              onPress={async () => {
+                await Clipboard.setStringAsync(
                   `https://arcade.prism.ai/?ref=${
                     userDatabase.privyId.split(":")[2]
                   }`
