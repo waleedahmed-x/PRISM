@@ -9,7 +9,7 @@ import {
 import React, { useState } from "react";
 import { HeaderBack } from "@/components/header/Header";
 import styled from "styled-components/native";
-import { CyanHollowButton } from "@/components/ui/Buttons";
+// import { CyanHollowButton } from "@/components/ui/Buttons";
 import { CyanGlowButton } from "@/components/ui/CyanAnimatedButton";
 
 export default function ShardsConvert({ navigation }) {

@@ -70,7 +70,7 @@ export default function Profile({ navigation }: any) {
         >
           <ModalBackdrop>
             <ModalContent>
-              <QRCode value={wallet.account.address} size={200} />
+              <QRCode value={wallet?.account?.address} size={200} />
               <Text style={{ textAlign: "center" }}>
                 Scan the above QR code to deposit funds on any EVM chain!
               </Text>
@@ -121,11 +121,11 @@ export default function Profile({ navigation }: any) {
           <SalesRep>
             <SalesRepContent>
               <Title>Connected Wallet</Title>
-              <Refer>{wallet.account.address || "No wallet connected"}</Refer>
+              <Refer>{wallet?.account?.address || "No wallet connected"}</Refer>
             </SalesRepContent>
             <ReferButton
               onPress={() => {
-                Clipboard.setString(wallet.account.address || "");
+                Clipboard.setString(wallet?.account?.address || "");
                 Alert.alert("Wallet address copied to clipboard!");
               }}
             >

@@ -15,12 +15,15 @@ import ArcadeCard from "@/components/ArcadeCard";
 import { useGames } from "@/contexts/gamesContext";
 import { HeaderBack } from "@/components/header/Header";
 import Lootbox from "./sections/Lootbox";
-import ConversionPopup from "./sections/ConversionPopup";
+// import ConversionPopup from "./sections/ConversionPopup";
 import { useGameContext } from "@/contexts/gameContext";
 import LootboxCard from "@/components/LootboxCard";
 import { CyanGlowButton } from "@/components/ui/CyanAnimatedButton";
-// import axios from "axios";
-// import { useEmbeddedWallet, usePrivy } from "@privy-io/expo";
+import axios, { AxiosError } from "axios";
+import { useEmbeddedWallet, usePrivy } from "@privy-io/expo";
+import { LootboxAxios } from "@/utils/LootboxAxios";
+import * as SecureStore from "expo-secure-store";
+
 // const LoadingContainer = styled(View)`
 //   flex: 1;
 //   align-items: center;
@@ -29,48 +32,35 @@ import { CyanGlowButton } from "@/components/ui/CyanAnimatedButton";
 // `;
 
 export default function LootboxLanding({ navigation }) {
-  const [showConversionPopup, setShowCononsversionPopup] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { games } = useGames();
   const { setSelectedGame } = useGameContext();
-  // const { user, getAccessToken } = usePrivy();
-  // const { account } = useEmbeddedWallet();
-  // useEffect(() => {
-  // ? GET DATASHARDS
-  // ? axios
-  // ?   .get("http://localhost:4001/data-shards", {
-  // ?     params: {
-  // ?       userId: user?.id,
-  // ?     },
-  // ?   })
-  // ?   .then((res) => {
-  // ?     console.log(res);
-  // ?   })
-  // ?   .catch((err) => {
-  // ?     console.log(JSON.stringify(err));
-  // ?   });
-  // ? GET DATASHARDS
+  const { user, getAccessToken } = usePrivy();
+  const { account } = useEmbeddedWallet();
   // ! GET AUTHENTICATED
-  // ! let token: string;
-  // ! async function getToken() {
-  // !   token = await getAccessToken();
-  // ! }
-  // ! getToken();
-  // ! axios
-  // !   .post(
-  // !     "http://localhost:4001/api/v1",
-  // !     {},
-  // !     {
-  // !       headers: {
-  // !         Authorization: `Bearer ${token}`,
-  // !       },
-  // !     }
-  // !   )
-  // !   .then((res) => {
-  // !     console.log(res.data);
-  // !   })
-  // !   .catch((err) => {
-  // !     console.log(JSON.stringify(err));
-  // !   });
+
+  const authenticated = async () => {
+    console.log("helo");
+    const accessToken = await getAccessToken();
+    const body = {
+      privyId: user.id,
+      email: "waleed@authornate.com",
+      accessToken,
+    };
+    axios
+      .post(`http://localhost:8080/api/lootbox/auth`, body, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((r) => {
+        console.log(r.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   // ! GET AUTHENTICATED
   // ? CREATE POWERPOINTS
   // ? axios
@@ -126,11 +116,11 @@ export default function LootboxLanding({ navigation }) {
 
   return (
     <SuperParent>
-      {showConversionPopup && (
+      {/* {showConversionPopup && (
         <ConversionPopup
           setShowCononsversionPopup={setShowCononsversionPopup}
         />
-      )}
+      )} */}
       <HeaderBack
         navigation={navigation}
         navigateTo="Home"
@@ -203,6 +193,14 @@ export default function LootboxLanding({ navigation }) {
             into shards!
           </SubPhrase>
           <View style={{ marginBottom: 10 }} />
+          <CyanGlowButton
+            title={loading ? "Loading..." : "Get Authenticated"}
+            icon
+            disabled={loading}
+            // event={getShards}
+            event={authenticated}
+            styles={{ marginTop: 15 }}
+          />
           <CyanGlowButton
             title="Earn Powerpoints"
             icon

@@ -15,11 +15,13 @@ export function CyanGlowButton({
   icon,
   title,
   styles,
+  disabled,
 }: {
   event: () => void;
   icon?: Boolean;
   title: string;
   styles?: ViewStyle;
+  disabled?: boolean;
 }) {
   const glowAnim = useRef(new Animated.Value(0)).current;
 
@@ -57,7 +59,12 @@ export function CyanGlowButton({
 
   return (
     // @ts-ignore
-    <TouchableParent onPress={event} style={[styles, animatedStyle]}>
+    <TouchableParent
+      onPress={event}
+      disabled={disabled}
+      // @ts-ignore
+      style={[styles, animatedStyle]}
+    >
       {/* @ts-ignore */}
       <CyanParent>
         {icon && <CyanIconImage source={require("@assets/icons/stars.png")} />}
