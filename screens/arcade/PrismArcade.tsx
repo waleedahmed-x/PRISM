@@ -75,6 +75,7 @@ export default function PrismArcade({
   const [searchTerm, setSearchTerm] = useState("");
   const { games, loading, refetchGames } = useGames();
   const [selectedTab, setSelectedTab] = useState("Latest");
+  console.log(games);
 
   return (
     <SuperParent>

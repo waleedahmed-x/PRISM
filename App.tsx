@@ -14,6 +14,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import ProfileSettings from "@screens/profile/ProfileSettings";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
+import { Buffer } from "buffer";
+global.Buffer = Buffer;
 
 export default function App() {
   const Stack = createNativeStackNavigator();

@@ -9,17 +9,12 @@ export default async function handleDBAuth(
   loginGlobal: any
   // logoutGlobal: any
 ) {
-  console.log(`${process.env.EXPO_PUBLIC_BACKEND_ENDPOINT}/api/auth`);
   const payload = userAuthPayloadSanitizer(user);
 
   try {
-    const response = await axios.post(
-      // `${process.env.EXPO_PUBLIC_BACKEND_ENDPOINT}/api/auth`,
-      `http://localhost:8080/api/auth`,
-      {
-        ...payload,
-      }
-    );
+    const response = await axios.post(`http://localhost:8080/api/auth`, {
+      ...payload,
+    });
     const userSanitizedObject = userAuthPayloadSanitizer(user);
     loginGlobal(userSanitizedObject);
 

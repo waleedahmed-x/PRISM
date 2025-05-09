@@ -31,12 +31,14 @@ export const GamesProvider: React.FC<{ children: React.ReactNode }> = ({
   const [games, setGames] = useState<Game[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  console.log(`${process.env.EXPO_PUBLIC_BACKEND_ENDPOINT}/api/games`);
 
   const fetchGames = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
       const response = await axios.get(
+        // `http://localhost:8080/api/games`
         `${process.env.EXPO_PUBLIC_BACKEND_ENDPOINT}/api/games`
       );
 
@@ -47,7 +49,6 @@ export const GamesProvider: React.FC<{ children: React.ReactNode }> = ({
       }
     } catch (err) {
       console.log(err);
-      0;
       setError("Error fetching games");
     } finally {
       setLoading(false);
