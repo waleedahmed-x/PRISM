@@ -7,7 +7,7 @@ import {
   Alert,
   Dimensions,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Quests from "./sections/Quests";
 import { quests } from "@/dummy/quests";
 import Lootbox from "./sections/Lootbox";
@@ -21,15 +21,78 @@ import { HeaderBack } from "@/components/header/Header";
 import { useGameContext } from "@/contexts/gameContext";
 import { useEmbeddedWallet, usePrivy } from "@privy-io/expo";
 import { CyanGlowButton } from "@/components/ui/CyanAnimatedButton";
+import UpdateUser from "./UpdateUser";
 
 export default function LootboxLanding({ navigation }) {
-  const [loading, setLoading] = useState(false);
   const { games } = useGames();
-  const { setSelectedGame } = useGameContext();
   const { user, getAccessToken } = usePrivy();
-  const { account } = useEmbeddedWallet();
+  const { setSelectedGame } = useGameContext();
+  const [loading, setLoading] = useState(false);
+  const [powerpoints, setPowerpoints] = useState("");
+  const { account, create } = useEmbeddedWallet();
+  // !
+  useEffect(() => {
+    if (!account) {
+      create()
+        .then((account) => {
+          console.log("Account created:", account);
+        })
+        .catch((error) => {
+          console.error("Error creating account:", error);
+        });
+    }
+  }, []);
+  // !
+  async function convertToShards() {
+    const sessionToken = await SecureStore.getItemAsync("session-token");
+    console.log("sessionToken: ", sessionToken);
+    const token = await getAccessToken();
+    console.log("token: ", token);
 
-  async function powerpointsLinked() {
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/lootbox/convert-to-commonshards",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "x-prism-session": sessionToken,
+          },
+        }
+      );
+
+      console.log("✅ Response:", response.data);
+    } catch (error: any) {
+      // console.error("❌ Error:", error.response?.data || error.message);
+      console.error("❌ Error:", error.response?.data || error.message);
+    }
+  }
+  async function getPowerpoints() {
+    const sessionToken = await SecureStore.getItemAsync("session-token");
+    console.log("sessionToken: ", sessionToken);
+    const token = await getAccessToken();
+    console.log("token: ", token);
+
+    try {
+      const response = await axios.get(
+        "http://localhost:8080/api/lootbox/get-powerpoints?page=1&limit=5000",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "x-prism-session": sessionToken,
+          },
+        }
+      );
+      const total = response?.data?.data
+        .filter((item) => item.userIdentifier === account?.address)
+        .reduce((sum, item) => sum + parseFloat(item.amount), 0);
+      setPowerpoints(total);
+      console.log("Total Points:", total);
+    } catch (error: any) {
+      console.error("❌ Error:", error.response?.data || error.message);
+    }
+  }
+  async function getLinkedPowerpoints() {
     const sessionToken = await SecureStore.getItemAsync("session-token");
     console.log("sessionToken: ", sessionToken);
     const token = await getAccessToken();
@@ -38,7 +101,33 @@ export default function LootboxLanding({ navigation }) {
     try {
       const response = await axios.get(
         "http://localhost:8080/api/lootbox/powerpoints-linked",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "x-prism-session": sessionToken,
+          },
+        }
+      );
+      const total = response?.data;
+      setPowerpoints(total.totalPointsSum);
+      console.log("Total Points:", total);
+    } catch (error: any) {
+      console.error("❌ Error:", error.response?.data || error.message);
+    }
+  }
+  async function getStatsByUser() {
+    const sessionToken = await SecureStore.getItemAsync("session-token");
+    console.log("sessionToken: ", sessionToken);
+    const token = await getAccessToken();
+    console.log("token: ", token);
 
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/api/lootbox/stats-by-user`,
+        // {
+        // evmWalletAddress: account?.address,
+        // userId: user?.id,
+        // },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -52,23 +141,41 @@ export default function LootboxLanding({ navigation }) {
       console.error("❌ Error:", error.response?.data || error.message);
     }
   }
-  async function earnPowerpoints() {
+  async function getStats() {
     const sessionToken = await SecureStore.getItemAsync("session-token");
     console.log("sessionToken: ", sessionToken);
     const token = await getAccessToken();
     console.log("token: ", token);
+
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/lootbox/earn-powerpoints",
-        {
-          userIdentifier: account?.address,
-          providerApp: "PRISM",
-          amount: 100,
-        },
+      const response = await axios.get(
+        `http://localhost:8080/api/lootbox/stats`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            "session-token": sessionToken,
+            "x-prism-session": sessionToken,
+          },
+        }
+      );
+
+      console.log("✅ Response:", response.data);
+    } catch (error: any) {
+      console.error("❌ Error:", error.response?.data || error.message);
+    }
+  }
+  async function getShards() {
+    const sessionToken = await SecureStore.getItemAsync("session-token");
+    console.log("sessionToken: ", sessionToken);
+    const token = await getAccessToken();
+    console.log("token: ", token);
+
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/api/lootbox/shards?page=1&limit=5000`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "x-prism-session": sessionToken,
           },
         }
       );
@@ -79,7 +186,36 @@ export default function LootboxLanding({ navigation }) {
     }
   }
 
-  const authenticated = async () => {
+  async function earnPowerpoints() {
+    const sessionToken = await SecureStore.getItemAsync("session-token");
+    console.log("sessionToken: ", sessionToken);
+    const token = await getAccessToken();
+    // console.log("token: ", token);
+    console.log("address: ", account?.address);
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/lootbox/earn-powerpoints",
+        {
+          // userId: user?.id,
+          userIdentifier: account?.address,
+          providerApp: "PRISM",
+          amount: 100,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "x-prism-session": sessionToken.toString(),
+          },
+        }
+      );
+
+      console.log("✅ Response:", response.data);
+    } catch (error: any) {
+      console.error("❌ Error:", error.response?.data || error.message);
+    }
+  }
+
+  const authenticate = async () => {
     const accessToken = await getAccessToken();
     const body = {
       privyId: user.id,
@@ -100,8 +236,6 @@ export default function LootboxLanding({ navigation }) {
         console.log(e);
       });
   };
-
-  console.log(user?.id);
 
   return (
     <SuperParent>
@@ -135,6 +269,7 @@ export default function LootboxLanding({ navigation }) {
       <BGVector source={require("@assets/images/lootbox-bg.png")} />
       <ScrollView>
         {/* <AnimatedBackground /> */}
+        <UpdateUser />
         <TitleBox>
           <Title>WELCOME</Title>
           <SubPhrase>
@@ -157,7 +292,8 @@ export default function LootboxLanding({ navigation }) {
           <LabelValue>
             <Label>Power Points</Label>
             <Inventory>
-              512 <StatsIcon source={require("@assets/icons/power.png")} />
+              {powerpoints.toString() || "NaN"}{" "}
+              <StatsIcon source={require("@assets/icons/power.png")} />
             </Inventory>
           </LabelValue>
           <LabelValue>
@@ -178,12 +314,48 @@ export default function LootboxLanding({ navigation }) {
           </SubPhrase>
           <View style={{ marginBottom: 10 }} />
           <CyanGlowButton
+            title={loading ? "Loading..." : "Convert to shards"}
+            icon
+            disabled={loading}
+            event={convertToShards}
+            styles={{ marginTop: 15 }}
+          />
+          <CyanGlowButton
+            title={loading ? "Loading..." : "See Stats By User"}
+            icon
+            disabled={loading}
+            event={getStatsByUser}
+            styles={{ marginTop: 15 }}
+          />
+          <CyanGlowButton
+            title={loading ? "Loading..." : "See Stats"}
+            icon
+            disabled={loading}
+            event={getStats}
+            styles={{ marginTop: 15 }}
+          />
+          <CyanGlowButton
+            title={loading ? "Loading..." : "See Shards"}
+            icon
+            disabled={loading}
+            event={getShards}
+            styles={{ marginTop: 15 }}
+          />
+          <CyanGlowButton
             title={loading ? "Loading..." : "See Powerpoints"}
             icon
             disabled={loading}
-            event={powerpointsLinked}
+            event={getPowerpoints}
             styles={{ marginTop: 15 }}
           />
+          <CyanGlowButton
+            title={loading ? "Loading..." : "See Powerpoints /linked"}
+            icon
+            disabled={loading}
+            event={getLinkedPowerpoints}
+            styles={{ marginTop: 15 }}
+          />
+
           <CyanGlowButton
             title={loading ? "Loading..." : "Earn Powerpoints call"}
             icon
@@ -196,11 +368,11 @@ export default function LootboxLanding({ navigation }) {
             title={loading ? "Loading..." : "Authenticate"}
             icon
             disabled={loading}
-            event={authenticated}
+            event={authenticate}
             styles={{ marginTop: 15 }}
           />
           <CyanGlowButton
-            title="Earn Powerpoints"
+            title="Earn Powerpoints (redirect)"
             icon
             event={() => {
               navigation.navigate("Game");
