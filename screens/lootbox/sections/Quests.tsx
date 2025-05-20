@@ -29,13 +29,11 @@ export default function Quests({ title, description, reward, game }: IQuest) {
               );
               console.log("sessionToken: ", sessionToken);
               const token = await getAccessToken();
-              // console.log("token: ", token);
               console.log("address: ", account?.address);
               try {
                 const response = await axios.post(
                   "http://localhost:8080/api/lootbox/earn-powerpoints",
                   {
-                    // userId: user?.id,
                     userIdentifier: account?.address,
                     providerApp: "PRISM",
                     amount: reward,
