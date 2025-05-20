@@ -11,17 +11,17 @@ import Quests from "./sections/Quests";
 import { quests } from "@/dummy/quests";
 import Lootbox from "./sections/Lootbox";
 import styled from "styled-components/native";
-import ArcadeCard from "@/components/ArcadeCard";
 import React, { useEffect } from "react";
+import Loading from "@/components/ui/Loading";
+import ArcadeCard from "@/components/ArcadeCard";
 import LootboxCard from "@/components/LootboxCard";
 import { useGames } from "@/contexts/gamesContext";
 import { HeaderBack } from "@/components/header/Header";
 import { useGameContext } from "@/contexts/gameContext";
 import { useEmbeddedWallet } from "@privy-io/expo";
-import { CyanGlowButton } from "@/components/ui/CyanAnimatedButton";
-import Loading from "@/components/ui/Loading";
 import { useStats } from "@/contexts/lootboxStats";
 import { useLootboxAuth } from "@/contexts/lootboxAuth";
+import { CyanGlowButton } from "@/components/ui/CyanAnimatedButton";
 
 export default function LootboxLanding({ navigation }) {
   const { games } = useGames();

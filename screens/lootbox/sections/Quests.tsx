@@ -1,13 +1,13 @@
-import { View, Text, Dimensions, Alert } from "react-native";
 import React from "react";
-import * as SecureStore from "expo-secure-store";
-import styled from "styled-components/native";
-import { IQuest } from "@/dummy/quests";
-import LootboxCard from "@/components/LootboxCard";
-import { CyanGlowButton } from "@/components/ui/CyanAnimatedButton";
-import { getAccessToken, useEmbeddedWallet } from "@privy-io/expo";
 import axios from "axios";
+import { IQuest } from "@/dummy/quests";
+import styled from "styled-components/native";
+import * as SecureStore from "expo-secure-store";
 import { useStats } from "@/contexts/lootboxStats";
+import LootboxCard from "@/components/LootboxCard";
+import { View, Text, Dimensions, Alert } from "react-native";
+import { getAccessToken, useEmbeddedWallet } from "@privy-io/expo";
+import { CyanGlowButton } from "@/components/ui/CyanAnimatedButton";
 
 export default function Quests({ title, description, reward, game }: IQuest) {
   const { account } = useEmbeddedWallet();
