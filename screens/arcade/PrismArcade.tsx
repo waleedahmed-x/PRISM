@@ -8,14 +8,14 @@ import {
   RefreshControl,
 } from "react-native";
 import styled from "styled-components/native";
-import ArcadeCard from "@components/ArcadeCard";
+import Loading from "@/components/ui/Loading";
 import Header from "@components/header/Header";
+import ArcadeCard from "@components/ArcadeCard";
+import { useGames } from "@/contexts/gamesContext";
 import { PrismHomeProps } from "@interfaces/arcade";
 import TabNavigator from "@/components/ui/TabNavigator";
-import { useUserDatabase } from "@/contexts/userContext";
-import { useGames } from "@/contexts/gamesContext";
-import Loading from "@/components/ui/Loading";
 import { useLootboxAuth } from "@/contexts/lootboxAuth";
+import { useUserDatabase } from "@/contexts/userContext";
 
 function Avatar({ navigation }: any) {
   const { userDatabase } = useUserDatabase();

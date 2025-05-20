@@ -16,10 +16,10 @@ import Loading from "@/components/ui/Loading";
 import ArcadeCard from "@/components/ArcadeCard";
 import LootboxCard from "@/components/LootboxCard";
 import { useGames } from "@/contexts/gamesContext";
-import { HeaderBack } from "@/components/header/Header";
-import { useGameContext } from "@/contexts/gameContext";
 import { useEmbeddedWallet } from "@privy-io/expo";
 import { useStats } from "@/contexts/lootboxStats";
+import { HeaderBack } from "@/components/header/Header";
+import { useGameContext } from "@/contexts/gameContext";
 import { useLootboxAuth } from "@/contexts/lootboxAuth";
 import { CyanGlowButton } from "@/components/ui/CyanAnimatedButton";
 
