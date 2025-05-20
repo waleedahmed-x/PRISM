@@ -1,12 +1,12 @@
 import React from "react";
-import { AlertProvider } from "@/contexts/alertContext";
 import { GameProvider } from "@/contexts/gameContext";
 import { UserProvider } from "@/contexts/authContext";
-import { EncryptionProvider } from "@/contexts/encryptionContext";
-import { DatabaseUserProvider } from "@/contexts/userContext";
+import { AlertProvider } from "@/contexts/alertContext";
 import { GamesProvider } from "@/contexts/gamesContext";
 import { StatsProvider } from "@/contexts/lootboxStats";
 import { LootboxAuthProvider } from "@/contexts/lootboxAuth";
+import { DatabaseUserProvider } from "@/contexts/userContext";
+import { EncryptionProvider } from "@/contexts/encryptionContext";
 
 export default function ContextProviders({ children }: any) {
   return (
