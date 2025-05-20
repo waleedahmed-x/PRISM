@@ -1,7 +1,7 @@
-import React, { createContext, useContext, useState } from "react";
-import * as SecureStore from "expo-secure-store";
 import axios from "axios";
+import * as SecureStore from "expo-secure-store";
 import { getAccessToken, usePrivy } from "@privy-io/expo";
+import React, { createContext, useContext, useState } from "react";
 
 const LAST_AUTH_KEY = "last-lootbox-auth-time";
 const SESSION_TOKEN_KEY = "session-token";
