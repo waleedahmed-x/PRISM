@@ -114,6 +114,11 @@ export default function Login({ navigation, setDBsatisfied }) {
             imgSrc={require("@assets/icons/google-icon.png")}
           />
           <SocialButton
+            event={() => OAuthLogin({ provider: "apple" })}
+            title="Signin with Apple"
+            imgSrc={require("@assets/icons/apple-icon.png")}
+          />
+          <SocialButton
             event={() => OAuthLogin({ provider: "twitter" })}
             title="Signin with Twitter"
             imgSrc={require("@assets/icons/twitter-icon.png")}

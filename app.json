@@ -16,6 +16,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "gg.gamegpt.prism",
       "buildNumber": "1",
+      "usesAppleSignIn": true,
       "infoPlist": {
         "NSPhotoLibraryUsageDescription": "This app needs access to your photo library to upload your profile picture.",
         "NSCameraUsageDescription": "This app needs access to your camera to take profile pictures."
@@ -33,7 +34,7 @@
     "web": {
       "favicon": "./assets/splash/splash.png"
     },
-    "plugins": ["expo-secure-store"],
+    "plugins": ["expo-secure-store", "expo-apple-authentication"],
     "extra": {
       "eas": {
         "projectId": "92856fda-b6b7-4cf8-af9b-9b334b73a105"
