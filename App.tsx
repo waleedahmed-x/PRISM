@@ -24,10 +24,11 @@ export default function App() {
     <ChainProvider>
       <PrivyProvider
         // appId={process.env.EXPO_PUBLIC_PRIVY_APP_ID}
-        appId="cma13z3mj027rl10m93zzysa5"
+        // appId="cma13z3mj027rl10m93zzysa5"
+        appId="clsp79e8b012fblj9e1qx8t3g"
         // clientId={process.env.EXPO_PUBLIC_PRIVY_CLIENT_ID}
-        clientId="client-WY6L68KoaSi83xgCusKxFERCVgmj2szvVsdPxDTZ67AUF"
-        // clientId="client-WY2hpRf9ry2nmH5PHcPP9Ts6AHF2MzPHaCpKN2tcn6Gwh"
+        // clientId="client-WY6L68KoaSi83xgCusKxFERCVgmj2szvVsdPxDTZ67AUF"
+        clientId="client-WY2hpRf9ry2nmH5PHcPP9Ts6AHF2MzPHaCpKN2tcn6Gwh"
         config={{
           // @ts-ignore
           embedded: {
