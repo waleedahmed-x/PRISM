@@ -5,6 +5,8 @@ import { UserProvider } from "@/contexts/authContext";
 import { EncryptionProvider } from "@/contexts/encryptionContext";
 import { DatabaseUserProvider } from "@/contexts/userContext";
 import { GamesProvider } from "@/contexts/gamesContext";
+import { StatsProvider } from "@/contexts/lootboxStats";
+import { LootboxAuthProvider } from "@/contexts/lootboxAuth";
 
 export default function ContextProviders({ children }: any) {
   return (
@@ -13,7 +15,11 @@ export default function ContextProviders({ children }: any) {
         <EncryptionProvider>
           <GamesProvider>
             <AlertProvider>
-              <GameProvider>{children}</GameProvider>
+              <LootboxAuthProvider>
+                <StatsProvider>
+                  <GameProvider>{children}</GameProvider>
+                </StatsProvider>
+              </LootboxAuthProvider>
             </AlertProvider>
           </GamesProvider>
         </EncryptionProvider>

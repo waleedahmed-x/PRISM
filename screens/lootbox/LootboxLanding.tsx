@@ -1,37 +1,34 @@
 import {
-  View,
-  Text,
-  Image,
-  ScrollView,
-  TouchableOpacity,
   Alert,
   Dimensions,
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import React, { useEffect, useState } from "react";
 import Quests from "./sections/Quests";
 import { quests } from "@/dummy/quests";
 import Lootbox from "./sections/Lootbox";
-import axios from "axios";
 import styled from "styled-components/native";
-import * as SecureStore from "expo-secure-store";
 import ArcadeCard from "@/components/ArcadeCard";
+import React, { useEffect } from "react";
 import LootboxCard from "@/components/LootboxCard";
 import { useGames } from "@/contexts/gamesContext";
 import { HeaderBack } from "@/components/header/Header";
 import { useGameContext } from "@/contexts/gameContext";
-import { useEmbeddedWallet, usePrivy } from "@privy-io/expo";
+import { useEmbeddedWallet } from "@privy-io/expo";
 import { CyanGlowButton } from "@/components/ui/CyanAnimatedButton";
-import UpdateUser from "./UpdateUser";
+import Loading from "@/components/ui/Loading";
+import { useStats } from "@/contexts/lootboxStats";
+import { useLootboxAuth } from "@/contexts/lootboxAuth";
 
 export default function LootboxLanding({ navigation }) {
   const { games } = useGames();
-  const { user, getAccessToken } = usePrivy();
+  const { totalPowerPoints, totalShards } = useStats();
   const { setSelectedGame } = useGameContext();
-  const [loading, setLoading] = useState(false);
-  const [sessionToken, setSessionToken] = useState("");
-  const [myStats, setMyStats] = useState({});
   const { account, create } = useEmbeddedWallet();
-  // !
+  const { loading } = useLootboxAuth();
   useEffect(() => {
     if (!account) {
       create()
@@ -42,63 +39,10 @@ export default function LootboxLanding({ navigation }) {
           console.error("Error creating account:", error);
         });
     }
-    const authenticate = async () => {
-      const accessToken = await getAccessToken();
-      const body = {
-        privyId: user.id,
-        email: "waleed@authornate.com",
-        accessToken,
-      };
-      axios
-        .post(`http://localhost:8080/api/lootbox/auth`, body, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        })
-        .then(async (r) => {
-          console.log(r.data);
-          await SecureStore.setItemAsync("session-token", r.data.token);
-          setSessionToken(r.data.token);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    };
-    authenticate();
   }, []);
-  // !
-
-  useEffect(() => {
-    async function getStats() {
-      const sessionToken = await SecureStore.getItemAsync("session-token");
-      console.log("sessionToken: ", sessionToken);
-      const token = await getAccessToken();
-      console.log("token: ", token);
-
-      try {
-        const response = await axios.get(
-          `http://localhost:8080/api/lootbox/stats`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "x-prism-session": sessionToken,
-            },
-          }
-        );
-        const myStats = response.data.filter(
-          (user) => user.evmWalletAddress === account?.address
-        );
-        setMyStats(myStats);
-        console.log("myStats: ", myStats);
-      } catch (error: any) {
-        console.error("❌ Error:", error.response?.data || error.message);
-      }
-    }
-    getStats();
-  }, [sessionToken]);
-
   return (
     <SuperParent>
+      {loading && <Loading />}
       <HeaderBack
         navigation={navigation}
         navigateTo="Home"
@@ -129,7 +73,6 @@ export default function LootboxLanding({ navigation }) {
       <BGVector source={require("@assets/images/lootbox-bg.png")} />
       <ScrollView>
         {/* <AnimatedBackground /> */}
-        <UpdateUser />
         <TitleBox>
           <Title>WELCOME</Title>
           <SubPhrase>
@@ -140,7 +83,7 @@ export default function LootboxLanding({ navigation }) {
           <LabelValue>
             <Label>Common Shards</Label>
             <Inventory>
-              {myStats[0]?.totalShards || "0"}{" "}
+              {String(totalShards) || "0"}{" "}
               <StatsIcon source={require("@assets/icons/shard.png")} />
             </Inventory>
           </LabelValue>
@@ -153,7 +96,7 @@ export default function LootboxLanding({ navigation }) {
           <LabelValue>
             <Label>Power Points</Label>
             <Inventory>
-              {myStats[0]?.totalPowerPoints || "0"}{" "}
+              {String(totalPowerPoints) || "0"}{" "}
               <StatsIcon source={require("@assets/icons/power.png")} />
             </Inventory>
           </LabelValue>

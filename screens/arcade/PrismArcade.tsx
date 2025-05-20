@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   TextInput,
@@ -15,6 +15,7 @@ import TabNavigator from "@/components/ui/TabNavigator";
 import { useUserDatabase } from "@/contexts/userContext";
 import { useGames } from "@/contexts/gamesContext";
 import Loading from "@/components/ui/Loading";
+import { useLootboxAuth } from "@/contexts/lootboxAuth";
 
 function Avatar({ navigation }: any) {
   const { userDatabase } = useUserDatabase();
@@ -75,7 +76,10 @@ export default function PrismArcade({
   const [searchTerm, setSearchTerm] = useState("");
   const { games, loading, refetchGames } = useGames();
   const [selectedTab, setSelectedTab] = useState("Latest");
-  console.log(games);
+  const { authenticate } = useLootboxAuth();
+  useEffect(() => {
+    authenticate();
+  }, []);
 
   return (
     <SuperParent>

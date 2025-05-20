@@ -1,23 +1,54 @@
-import {
-  View,
-  Text,
-  ActivityIndicator,
-  Image,
-  Alert,
-  TextInput,
-} from "react-native";
 import React, { useState } from "react";
-import { HeaderBack } from "@/components/header/Header";
 import styled from "styled-components/native";
-// import { CyanHollowButton } from "@/components/ui/Buttons";
+import * as SecureStore from "expo-secure-store";
+import { HeaderBack } from "@/components/header/Header";
+import { View, Text, Image, Alert, TextInput } from "react-native";
 import { CyanGlowButton } from "@/components/ui/CyanAnimatedButton";
+import { getAccessToken } from "@privy-io/expo";
+import axios from "axios";
+import { useStats } from "@/contexts/lootboxStats";
 
 export default function ShardsConvert({ navigation }) {
-  const [balance, _setBalance] = useState(5500);
-  const [inputPoints, setInputPoints] = useState("0");
-
+  const { totalPowerPoints } = useStats();
+  const [balance, _setBalance] = useState(totalPowerPoints || 0);
+  const [inputPoints, setInputPoints] = useState(totalPowerPoints.toString());
   const parsedPoints = parseInt(inputPoints) || 0;
   const calculatedShards = Math.floor(parsedPoints / 1000);
+  async function convertToShards() {
+    const parsedPoints = parseInt(inputPoints) || 0;
+
+    if (parsedPoints < 1000) {
+      Alert.alert(
+        "Insufficient Powerpoints",
+        "You need at least 1000 Powerpoints to convert to 1 Shard."
+      );
+      return;
+    }
+
+    try {
+      const sessionToken = await SecureStore.getItemAsync("session-token");
+      const token = await getAccessToken();
+
+      const response = await axios.post(
+        "http://localhost:8080/api/lootbox/convert-to-commonshards",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "x-prism-session": sessionToken,
+          },
+        }
+      );
+
+      console.log("✅ Response:", response.data);
+
+      Alert.alert("Success", "Powerpoints successfully converted to shards.");
+    } catch (error: any) {
+      console.error("❌ Error:", error.response?.data || error.message);
+      Alert.alert("Error", "Something went wrong during conversion.");
+    }
+  }
+
   return (
     <Parent>
       <HeaderBack
@@ -60,12 +91,11 @@ export default function ShardsConvert({ navigation }) {
             <AssetBalance>{calculatedShards}</AssetBalance>
           </PointsContainer>
         </ConversionContainer>
-        <CyanGlowButton title="Convert to Shards" event={() => {}} icon />
-        {/* <CyanHollowButton
-          title="Close"
-          event={() => navigation.goBack()}
+        <CyanGlowButton
+          title="Convert to Shards"
+          event={convertToShards}
           icon
-        /> */}
+        />
       </CenterContainer>
     </Parent>
   );
