@@ -1,12 +1,12 @@
+import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components/native";
+import { getAccessToken } from "@privy-io/expo";
 import * as SecureStore from "expo-secure-store";
+import { useStats } from "@/contexts/lootboxStats";
 import { HeaderBack } from "@/components/header/Header";
 import { View, Text, Image, Alert, TextInput } from "react-native";
 import { CyanGlowButton } from "@/components/ui/CyanAnimatedButton";
-import { getAccessToken } from "@privy-io/expo";
-import axios from "axios";
-import { useStats } from "@/contexts/lootboxStats";
 
 export default function ShardsConvert({ navigation }) {
   const { totalPowerPoints } = useStats();
