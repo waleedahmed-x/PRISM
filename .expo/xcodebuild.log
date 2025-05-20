@@ -965,6 +965,32 @@ GatherProvisioningInputs
 
 CreateBuildDescription
 
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.4.sdk -x c++ -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.4.sdk -x objective-c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.4.sdk -x objective-c++ -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.4.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.4.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -V
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --print-asset-tag-combinations --output-format xml1 /Users/waleedahmed/Desktop/prism-gpt/ios/PRISM/Images.xcassets
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.4.sdk -x assembler-with-cpp -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: 54e022f71cbe1343989d7061d39191aa
+Build description path: /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Intermediates.noindex/XCBuildData/54e022f71cbe1343989d7061d39191aa.xcbuilddata
 ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.4.sdk /Users/waleedahmed/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.4-22E235-71825a6d136aa4733edcbe86ece5525b.sdkstatcache
     cd /Users/waleedahmed/Desktop/prism-gpt/ios
     /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.4.sdk -o /Users/waleedahmed/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.4-22E235-71825a6d136aa4733edcbe86ece5525b.sdkstatcache
@@ -1472,6 +1498,30 @@ PhaseScriptExecution [CP-User]\ [Hermes]\ Replace\ Hermes\ for\ the\ right\ conf
     /bin/sh -c /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/hermes-engine.build/Script-46EB2E00024C60.sh
 Node found at: /usr/local/bin/node
 No previous build detected, but Debug Configuration. No need to replace Hermes engine
+
+ProcessInfoPlistFile /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/RCT-Folly/RCT-Folly_privacy.bundle/Info.plist /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/RCT-Folly/ResourceBundle-RCT-Folly_privacy-RCT-Folly-Info.plist (in target 'RCT-Folly-RCT-Folly_privacy' from project 'Pods')
+    cd /Users/waleedahmed/Desktop/prism-gpt/ios/Pods
+    builtin-infoPlistUtility /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/RCT-Folly/ResourceBundle-RCT-Folly_privacy-RCT-Folly-Info.plist -producttype com.apple.product-type.bundle -expandbuildsettings -format binary -platform iphonesimulator -o /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/RCT-Folly/RCT-Folly_privacy.bundle/Info.plist
+
+ProcessInfoPlistFile /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/boost/boost_privacy.bundle/Info.plist /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/boost/ResourceBundle-boost_privacy-boost-Info.plist (in target 'boost-boost_privacy' from project 'Pods')
+    cd /Users/waleedahmed/Desktop/prism-gpt/ios/Pods
+    builtin-infoPlistUtility /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/boost/ResourceBundle-boost_privacy-boost-Info.plist -producttype com.apple.product-type.bundle -expandbuildsettings -format binary -platform iphonesimulator -o /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/boost/boost_privacy.bundle/Info.plist
+
+ProcessInfoPlistFile /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/glog/glog_privacy.bundle/Info.plist /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/glog/ResourceBundle-glog_privacy-glog-Info.plist (in target 'glog-glog_privacy' from project 'Pods')
+    cd /Users/waleedahmed/Desktop/prism-gpt/ios/Pods
+    builtin-infoPlistUtility /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/glog/ResourceBundle-glog_privacy-glog-Info.plist -producttype com.apple.product-type.bundle -expandbuildsettings -format binary -platform iphonesimulator -o /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/glog/glog_privacy.bundle/Info.plist
+
+ProcessInfoPlistFile /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/React-Core/React-Core_privacy.bundle/Info.plist /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/React-Core/ResourceBundle-React-Core_privacy-React-Core-Info.plist (in target 'React-Core-React-Core_privacy' from project 'Pods')
+    cd /Users/waleedahmed/Desktop/prism-gpt/ios/Pods
+    builtin-infoPlistUtility /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/React-Core/ResourceBundle-React-Core_privacy-React-Core-Info.plist -producttype com.apple.product-type.bundle -expandbuildsettings -format binary -platform iphonesimulator -o /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/React-Core/React-Core_privacy.bundle/Info.plist
+
+ProcessInfoPlistFile /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/React-cxxreact/React-cxxreact_privacy.bundle/Info.plist /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/React-cxxreact/ResourceBundle-React-cxxreact_privacy-React-cxxreact-Info.plist (in target 'React-cxxreact-React-cxxreact_privacy' from project 'Pods')
+    cd /Users/waleedahmed/Desktop/prism-gpt/ios/Pods
+    builtin-infoPlistUtility /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/React-cxxreact/ResourceBundle-React-cxxreact_privacy-React-cxxreact-Info.plist -producttype com.apple.product-type.bundle -expandbuildsettings -format binary -platform iphonesimulator -o /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/React-cxxreact/React-cxxreact_privacy.bundle/Info.plist
+
+ProcessInfoPlistFile /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/EXApplication/ExpoApplication_privacy.bundle/Info.plist /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/EXApplication/ResourceBundle-ExpoApplication_privacy-EXApplication-Info.plist (in target 'EXApplication-ExpoApplication_privacy' from project 'Pods')
+    cd /Users/waleedahmed/Desktop/prism-gpt/ios/Pods
+    builtin-infoPlistUtility /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/EXApplication/ResourceBundle-ExpoApplication_privacy-EXApplication-Info.plist -producttype com.apple.product-type.bundle -expandbuildsettings -format binary -platform iphonesimulator -o /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/EXApplication/ExpoApplication_privacy.bundle/Info.plist
 
 warning: Run script build phase '[CP-User] [RN]Check rncore' will be run during every build because it does not specify any outputs. To address this issue, either add output dependencies to the script phase, or configure it to run in every build by unchecking "Based on dependency analysis" in the script phase. (in target 'React-Fabric' from project 'Pods')
 PhaseScriptExecution [CP-User]\ [RN]Check\ rncore /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/React-Fabric.build/Script-46EB2E00024C20.sh (in target 'React-Fabric' from project 'Pods')
@@ -2518,6 +2568,14 @@ PhaseScriptExecution [CP-User]\ [RN]Check\ rncore /Users/waleedahmed/Library/Dev
     /bin/sh -c /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/React-FabricComponents.build/Script-46EB2E00024C30.sh
 Checking whether Codegen has run...
 
+ProcessInfoPlistFile /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/EXConstants/EXConstants.bundle/Info.plist /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/EXConstants/ResourceBundle-EXConstants-EXConstants-Info.plist (in target 'EXConstants-EXConstants' from project 'Pods')
+    cd /Users/waleedahmed/Desktop/prism-gpt/ios/Pods
+    builtin-infoPlistUtility /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/EXConstants/ResourceBundle-EXConstants-EXConstants-Info.plist -producttype com.apple.product-type.bundle -expandbuildsettings -format binary -platform iphonesimulator -o /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/EXConstants/EXConstants.bundle/Info.plist
+
+ProcessInfoPlistFile /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/EXConstants/ExpoConstants_privacy.bundle/Info.plist /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/EXConstants/ResourceBundle-ExpoConstants_privacy-EXConstants-Info.plist (in target 'EXConstants-ExpoConstants_privacy' from project 'Pods')
+    cd /Users/waleedahmed/Desktop/prism-gpt/ios/Pods
+    builtin-infoPlistUtility /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/EXConstants/ResourceBundle-ExpoConstants_privacy-EXConstants-Info.plist -producttype com.apple.product-type.bundle -expandbuildsettings -format binary -platform iphonesimulator -o /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/EXConstants/ExpoConstants_privacy.bundle/Info.plist
+
 warning: Run script build phase '[CP-User] Generate app.config for prebuilt Constants.manifest' will be run during every build because it does not specify any outputs. To address this issue, either add output dependencies to the script phase, or configure it to run in every build by unchecking "Based on dependency analysis" in the script phase. (in target 'EXConstants' from project 'Pods')
 PhaseScriptExecution [CP-User]\ Generate\ app.config\ for\ prebuilt\ Constants.manifest /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/EXConstants.build/Script-46EB2E00024C10.sh (in target 'EXConstants' from project 'Pods')
     cd /Users/waleedahmed/Desktop/prism-gpt/ios/Pods
@@ -3043,8 +3101,21 @@ PhaseScriptExecution [CP-User]\ Generate\ app.config\ for\ prebuilt\ Constants.m
     /bin/sh -c /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/EXConstants.build/Script-46EB2E00024C10.sh
 Node found at: /usr/local/bin/node
 
-note: Run script build phase 'Bundle React Native code and images' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'PRISM' from project 'PRISM')
+ProcessInfoPlistFile /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/ExpoFileSystem/ExpoFileSystem_privacy.bundle/Info.plist /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/ExpoFileSystem/ResourceBundle-ExpoFileSystem_privacy-ExpoFileSystem-Info.plist (in target 'ExpoFileSystem-ExpoFileSystem_privacy' from project 'Pods')
+    cd /Users/waleedahmed/Desktop/prism-gpt/ios/Pods
+    builtin-infoPlistUtility /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/ExpoFileSystem/ResourceBundle-ExpoFileSystem_privacy-ExpoFileSystem-Info.plist -producttype com.apple.product-type.bundle -expandbuildsettings -format binary -platform iphonesimulator -o /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/ExpoFileSystem/ExpoFileSystem_privacy.bundle/Info.plist
+
+/Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Pods.xcodeproj: warning: The iOS Simulator deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 9.0, but the range of supported deployment target versions is 12.0 to 18.4.99. (in target 'RNCAsyncStorage-RNCAsyncStorage_resources' from project 'Pods')
+ProcessInfoPlistFile /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/RNCAsyncStorage/RNCAsyncStorage_resources.bundle/Info.plist /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/RNCAsyncStorage/ResourceBundle-RNCAsyncStorage_resources-RNCAsyncStorage-Info.plist (in target 'RNCAsyncStorage-RNCAsyncStorage_resources' from project 'Pods')
+    cd /Users/waleedahmed/Desktop/prism-gpt/ios/Pods
+    builtin-infoPlistUtility /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/RNCAsyncStorage/ResourceBundle-RNCAsyncStorage_resources-RNCAsyncStorage-Info.plist -producttype com.apple.product-type.bundle -expandbuildsettings -format binary -platform iphonesimulator -o /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/RNCAsyncStorage/RNCAsyncStorage_resources.bundle/Info.plist
+
+ProcessInfoPlistFile /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/RNSVG/RNSVGFilters.bundle/Info.plist /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/RNSVG/ResourceBundle-RNSVGFilters-RNSVG-Info.plist (in target 'RNSVG-RNSVGFilters' from project 'Pods')
+    cd /Users/waleedahmed/Desktop/prism-gpt/ios/Pods
+    builtin-infoPlistUtility /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/RNSVG/ResourceBundle-RNSVGFilters-RNSVG-Info.plist -producttype com.apple.product-type.bundle -expandbuildsettings -format binary -platform iphonesimulator -o /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/RNSVG/RNSVGFilters.bundle/Info.plist
+
 note: Run script build phase '[Expo] Configure project' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'PRISM' from project 'PRISM')
+note: Run script build phase 'Bundle React Native code and images' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'PRISM' from project 'PRISM')
 PhaseScriptExecution [Expo]\ Configure\ project /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Intermediates.noindex/PRISM.build/Debug-iphonesimulator/PRISM.build/Script-2C64C1F472E7EAD5A592ACE4.sh (in target 'PRISM' from project 'PRISM')
     cd /Users/waleedahmed/Desktop/prism-gpt/ios
     export ACTION\=build
@@ -3640,15 +3711,14 @@ PrecompileSwiftBridgingHeader normal arm64 (in target 'PRISM' from project 'PRIS
 
 SwiftDriverJobDiscovery normal arm64 Compiling bridging header (in target 'PRISM' from project 'PRISM')
 
-SwiftCompile normal arm64 Compiling\ ExpoModulesProvider.swift /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/Pods-PRISM/ExpoModulesProvider.swift (in target 'PRISM' from project 'PRISM')
-
-SwiftCompile normal arm64 /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/Pods-PRISM/ExpoModulesProvider.swift (in target 'PRISM' from project 'PRISM')
-    cd /Users/waleedahmed/Desktop/prism-gpt/ios
-    
-
 SwiftEmitModule normal arm64 Emitting\ module\ for\ PRISM (in target 'PRISM' from project 'PRISM')
 
 EmitSwiftModule normal arm64 (in target 'PRISM' from project 'PRISM')
+    cd /Users/waleedahmed/Desktop/prism-gpt/ios
+    
+
+SwiftCompile normal arm64 Compiling\ ExpoModulesProvider.swift /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/Pods-PRISM/ExpoModulesProvider.swift (in target 'PRISM' from project 'PRISM')
+SwiftCompile normal arm64 /Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Target\ Support\ Files/Pods-PRISM/ExpoModulesProvider.swift (in target 'PRISM' from project 'PRISM')
     cd /Users/waleedahmed/Desktop/prism-gpt/ios
     
 
@@ -4285,8 +4355,16 @@ total size is 20836  speedup is 6.86
 ExtractAppIntentsMetadata (in target 'PRISM' from project 'PRISM')
     cd /Users/waleedahmed/Desktop/prism-gpt/ios
     /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name PRISM --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.4.sdk --xcode-version 16E140 --platform-family iOS --deployment-target 15.1 --bundle-identifier gg.gamegpt.prism --output /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/PRISM.app --target-triple arm64-apple-ios15.1-simulator --binary-file /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/PRISM.app/PRISM --dependency-file /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Intermediates.noindex/PRISM.build/Debug-iphonesimulator/PRISM.build/Objects-normal/arm64/PRISM_dependency_info.dat --stringsdata-file /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Intermediates.noindex/PRISM.build/Debug-iphonesimulator/PRISM.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Intermediates.noindex/PRISM.build/Debug-iphonesimulator/PRISM.build/Objects-normal/arm64/PRISM.SwiftFileList --metadata-file-list /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Intermediates.noindex/PRISM.build/Debug-iphonesimulator/PRISM.build/PRISM.DependencyMetadataFileList --static-metadata-file-list /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Intermediates.noindex/PRISM.build/Debug-iphonesimulator/PRISM.build/PRISM.DependencyStaticMetadataFileList --swift-const-vals-list /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Intermediates.noindex/PRISM.build/Debug-iphonesimulator/PRISM.build/Objects-normal/arm64/PRISM.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
-2025-05-20 09:36:37.990 appintentsmetadataprocessor[16551:375753] Starting appintentsmetadataprocessor export
-2025-05-20 09:36:38.006 appintentsmetadataprocessor[16551:375753] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+2025-05-20 12:50:15.791 appintentsmetadataprocessor[25613:561012] Starting appintentsmetadataprocessor export
+2025-05-20 12:50:15.805 appintentsmetadataprocessor[25613:561012] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+ProcessInfoPlistFile /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/PRISM.app/Info.plist /Users/waleedahmed/Desktop/prism-gpt/ios/PRISM/Info.plist (in target 'PRISM' from project 'PRISM')
+    cd /Users/waleedahmed/Desktop/prism-gpt/ios
+    builtin-infoPlistUtility /Users/waleedahmed/Desktop/prism-gpt/ios/PRISM/Info.plist -producttype com.apple.product-type.application -genpkginfo /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/PRISM.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Intermediates.noindex/PRISM.build/Debug-iphonesimulator/PRISM.build/SplashScreen-SBPartialInfo.plist -additionalcontentfile /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Intermediates.noindex/PRISM.build/Debug-iphonesimulator/PRISM.build/assetcatalog_generated_info.plist -o /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/PRISM.app/Info.plist
+
+CopySwiftLibs /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/PRISM.app (in target 'PRISM' from project 'PRISM')
+    cd /Users/waleedahmed/Desktop/prism-gpt/ios
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/PRISM.app/PRISM.debug.dylib --scan-folder /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/PRISM.app/Frameworks --scan-folder /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/PRISM.app/PlugIns --scan-folder /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/PRISM.app/SystemExtensions --scan-folder /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/PRISM.app/Extensions --platform iphonesimulator --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/PRISM.app/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Intermediates.noindex/PRISM.build/Debug-iphonesimulator/PRISM.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
 
 CodeSign /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/PRISM.app/PRISM.debug.dylib (in target 'PRISM' from project 'PRISM')
     cd /Users/waleedahmed/Desktop/prism-gpt/ios
@@ -4316,7 +4394,6 @@ Validate /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumx
     cd /Users/waleedahmed/Desktop/prism-gpt/ios
     builtin-validationUtility /Users/waleedahmed/Library/Developer/Xcode/DerivedData/PRISM-hksafbkumxtlcsftvbzmhzwxpzgt/Build/Products/Debug-iphonesimulator/PRISM.app -infoplist-subpath Info.plist
 
-/Users/waleedahmed/Desktop/prism-gpt/ios/Pods/Pods.xcodeproj: warning: The iOS Simulator deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 9.0, but the range of supported deployment target versions is 12.0 to 18.4.99. (in target 'RNCAsyncStorage-RNCAsyncStorage_resources' from project 'Pods')
 warning: Run script build phase '[CP-User] [Hermes] Replace Hermes for the right configuration, if needed' will be run during every build because it does not specify any outputs. To address this issue, either add output dependencies to the script phase, or configure it to run in every build by unchecking "Based on dependency analysis" in the script phase. (in target 'hermes-engine' from project 'Pods')
 ** BUILD SUCCEEDED **
 

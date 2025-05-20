@@ -114,7 +114,16 @@ export default function Login({ navigation, setDBsatisfied }) {
             imgSrc={require("@assets/icons/google-icon.png")}
           />
           <SocialButton
-            event={() => OAuthLogin({ provider: "apple" })}
+            event={async () => {
+              try {
+                await sendCode({ email: "test-6725@privy.io" });
+                await loginWithCode({
+                  code: "383175",
+                });
+              } catch (error) {
+                console.error("Error during test login attempt:", error);
+              }
+            }}
             title="Signin with Apple"
             imgSrc={require("@assets/icons/apple-icon.png")}
           />
