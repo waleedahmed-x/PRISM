@@ -1,4 +1,4 @@
-sdcvsdv# PRISM APP REACT NATIVE
+dcvsdv# PRISM APP REACT NATIVE
 
 ```Bash
 git clone https://github.com/AuthornateDev/gg.gamegpt.prism
